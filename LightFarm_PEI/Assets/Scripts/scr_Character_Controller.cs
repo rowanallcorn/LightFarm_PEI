@@ -5,7 +5,11 @@ using UnityEngine.AI;
 
 public class scr_Character_Controller : MonoBehaviour
 {
-    public LayerMask clickableArea;
+    public LayerMask clickableGroundArea;
+    public LayerMask clickableFarmingPlotArea;
+    
+
+
 
     private NavMeshAgent myAgent;
 
@@ -32,7 +36,7 @@ public class scr_Character_Controller : MonoBehaviour
             Ray myRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
 
-            if (Physics.Raycast(myRay, out hitInfo, clickableArea))
+            if (Physics.Raycast(myRay, out hitInfo, clickableGroundArea))
             {
                 myAgent.SetDestination(hitInfo.point);
 

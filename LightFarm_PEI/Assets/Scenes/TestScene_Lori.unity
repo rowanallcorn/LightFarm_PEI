@@ -225,8 +225,7 @@ GameObject:
   - component: {fileID: 759577137}
   - component: {fileID: 759577136}
   - component: {fileID: 759577141}
-  - component: {fileID: 759577142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GridTest2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridRows: 100
   gridColumns: 60
-  cellSize: 1
+  cellSize: 2
 --- !u!65 &759577137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333,19 +332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad725a0a1450f440814004ad6c69e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &759577142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759577135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddb9814fa5381c429275f598cad1889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preCrop: {fileID: 7107343037138869641, guid: f3689ac8d3638674085be252cb7b117e, type: 3}
+  pre_TilledSpot: {fileID: 6710683094726860986, guid: 105d69f4d140ea2469fc5e86c8aae534,
+    type: 3}
+  pre_Crop: {fileID: 7107343037138869641, guid: f3689ac8d3638674085be252cb7b117e,
+    type: 3}
 --- !u!1 &1528360177
 GameObject:
   m_ObjectHideFlags: 0

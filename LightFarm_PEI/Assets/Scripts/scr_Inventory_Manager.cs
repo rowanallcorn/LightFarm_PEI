@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_Inventory_Manager : MonoBehaviour
 {
-
+    public int potatoSeeds;
 
 
     // Start is called before the first frame update
@@ -17,5 +17,11 @@ public class scr_Inventory_Manager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void IncreasePotatoSeedCount()
+    {
+
+        potatoSeeds++;
     }
 }

@@ -65,4 +65,11 @@ public class scr_Crop_Growth : MonoBehaviour
         this.transform.localScale += new Vector3(.25f, .25f, .25f);
 
     }
+
+    //decrease growing timer by fast forward amount
+    public void FastForwardGrowth(float timeAddedInSeconds) {
+
+        timeToGrow -= timeAddedInSeconds;
+
+    }
 }

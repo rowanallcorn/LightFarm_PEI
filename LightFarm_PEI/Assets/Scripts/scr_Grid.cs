@@ -34,7 +34,7 @@ public class scr_Grid : MonoBehaviour
     }
 
 
-    public Vector3 GetPointOnGrid(Vector3 hitPoint)
+    public Vector3 GetPointOnGridCentred(Vector3 hitPoint)
     {
             //check for matching spot it array
             for (int x = 0; x < gridRows; x += cellSize)
@@ -49,10 +49,6 @@ public class scr_Grid : MonoBehaviour
                         //if hit matches both row and col 
                         if (hitPoint.x < x && hitPoint.x > x - cellSize)
                         {
-
-                            //return spot
-                            //return gridCells[x, z];
-
                             //return spot, but centred within grid cell
                              return GetCentreOfSpot(gridCells[x, z]);
                         }
@@ -65,12 +61,8 @@ public class scr_Grid : MonoBehaviour
                         //if hit matches both row and col 
                         if (hitPoint.x < x && hitPoint.x > 0)
                         {
-
-                            //return spot
-                            //return gridCells[x, z];
-
                             //return spot, but centred within grid cell
-                             return GetCentreOfSpot(gridCells[x, z]);
+                            return GetCentreOfSpot(gridCells[x, z]);
                         }
                     }
 
@@ -81,6 +73,51 @@ public class scr_Grid : MonoBehaviour
 
         //if nothing
        return Vector3.zero;
+
+
+    }
+
+    public Vector3 GetPointOnGridCorner(Vector3 hitPoint)
+    {
+        //check for matching spot it array
+        for (int x = 0; x < gridRows; x += cellSize)
+        {
+            for (int z = 0; z < gridColumns; z += cellSize)
+            {
+
+                if (z != 0 && x != 0)
+                {
+                    if (hitPoint.z < z && hitPoint.z > z - cellSize)
+                    {
+                        //if hit matches both row and col 
+                        if (hitPoint.x < x && hitPoint.x > x - cellSize)
+                        {
+
+                            //return spot
+                            return gridCells[x, z];
+                        }
+                    }
+                }
+                else
+                {
+                    if (hitPoint.z < z && hitPoint.z > 0)
+                    {
+                        //if hit matches both row and col 
+                        if (hitPoint.x < x && hitPoint.x > 0)
+                        {
+
+                            //return spot
+                            return gridCells[x, z];
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+        //if nothing
+        return Vector3.zero;
 
 
     }

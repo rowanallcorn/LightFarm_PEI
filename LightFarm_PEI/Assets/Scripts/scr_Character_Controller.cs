@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class scr_Character_Controller : MonoBehaviour
 {
+    //determine what action to take based on the layer.
     public LayerMask clickableGroundArea;
     public LayerMask clickableFarmingPlotArea;
 
+    //moving speed and roation;
     public float rotationSpeed;
     public float playerSpeed;
 
+
+    //where the character is moving to.
     private Vector3 targetPosition;
     private Vector3 lookAtTargetPosition;
     private Quaternion playerRotation;

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class scr_Crop_Controller : MonoBehaviour
 {
-
     //whether the crop has finished growing
     public bool finishedGrowing;
 
+    private scr_Crop_Growth sc_CropGrowth;
 
     void Start()
     {
+        sc_CropGrowth = GetComponent<scr_Crop_Growth>();
+
         //FOR TESTING
         //set the time for crop to grow
-        GetComponent<scr_Crop_Growth>().timeToGrow = 5f;
-        GetComponent<scr_Crop_Growth>().StartGrowth();
+        sc_CropGrowth.timeToGrow = 5f;
+        sc_CropGrowth.StartGrowth();
     }
 
     void Update()
@@ -26,11 +28,9 @@ public class scr_Crop_Controller : MonoBehaviour
     private void OnMouseDown()
     {
         //FOR TESTING
-        //destroys the object once it's fully grown
         if (finishedGrowing)
         {
-            Destroy(this.gameObject);
-            Debug.Log("Crop harvested.");
+            Debug.Log("Crop ready to be harvested.");
         }
         else
         {

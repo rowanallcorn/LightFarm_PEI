@@ -15,6 +15,9 @@ public class scr_Crop_Controller : MonoBehaviour
     //initialize crop
     public scr_Crop_Data data;
 
+    //for rotation check
+    public string cropFamily; 
+
     void Start()
     {
         sc_CropGrowth = GetComponent<scr_Crop_Growth>();
@@ -27,7 +30,7 @@ public class scr_Crop_Controller : MonoBehaviour
         sc_CropGrowth.StartGrowth();
 
         sc_SoilHealth = GetComponentInParent<scr_Soil_Health>();
-        sc_SoilHealth.CheckRotation(this.name);
+        sc_SoilHealth.CheckRotation(this.name, cropFamily);
 
     }
 
@@ -52,8 +55,9 @@ public class scr_Crop_Controller : MonoBehaviour
         {
             //set soils last crop
             sc_SoilHealth.lastCrop = this.name;
+            sc_SoilHealth.lastCropFamily = cropFamily;
 
-            Debug.Log("Crop Harvested.");
+            Debug.Log(this.name + " Harvested.");
             Destroy(this.gameObject);
         }
         else
@@ -69,7 +73,9 @@ public class scr_Crop_Controller : MonoBehaviour
         //set crop name
         name = data.name;
         //set crop growth time
-        sc_CropGrowth.timeToGrow = data.totalTimeGrowth;
+        sc_CropGrowth.timeToGrow = data.totalTimeGrowthSeconds;
+        //plant family
+        cropFamily = data.plantRotationFamily;
 
         //set crop model
         GameObject cropModel = Instantiate(data.model, transform.position, transform.rotation) as GameObject;

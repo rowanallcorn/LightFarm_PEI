@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99898d19454bb424baf2311d33572cc0, type: 3}
-  m_Name: Potato
+  m_Name: Carrot
   m_EditorClassIdentifier: 
-  totalTimeGrowthSeconds: 10
-  model: {fileID: -927199367670048503, guid: dd7076e778801eb418bb55bc6daff976, type: 3}
-  plantRotationFamily: Potato
+  totalTimeGrowthSeconds: 0
+  model: {fileID: 0}
+  plantRotationFamily: Root

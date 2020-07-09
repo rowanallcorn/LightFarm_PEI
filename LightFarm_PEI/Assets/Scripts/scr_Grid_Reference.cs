@@ -75,7 +75,8 @@ public class scr_Grid_Reference : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             //centre grid point
-           obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
+            obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
+            //obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
 
             //if player is placing an object, change the grid point
             if (isPlacingObject)
@@ -112,6 +113,7 @@ public class scr_Grid_Reference : MonoBehaviour
                     {
                         //Get raycast's position as a point on the grid
                         TillSoil(sc_Grid.GetPointOnGridCentred(hit.point));
+                        //TillSoil(sc_Grid.GetPointOnGridCorner(hit.point));
                     }
 
                     //if player is placing an object
@@ -136,6 +138,7 @@ public class scr_Grid_Reference : MonoBehaviour
                     if (isPlantingSeed)
                     {
                         PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point), hit.collider.gameObject);
+                        //PlantCrop(sc_Grid.GetPointOnGridCorner(hit.point), hit.collider.gameObject);
                     }
                 }
 
@@ -156,6 +159,7 @@ public class scr_Grid_Reference : MonoBehaviour
     void TillSoil(Vector3 spawnPoint) {
 
         Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, .5f, sc_Grid.cellSize / 2);
+        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , .5f, sc_Grid.cellSize);
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -184,6 +188,7 @@ public class scr_Grid_Reference : MonoBehaviour
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
         Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
+       // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -203,7 +208,7 @@ public class scr_Grid_Reference : MonoBehaviour
         //crop
         GameObject cropTestObj = Instantiate(pre_Crop);
         cropTestObj.transform.position = spawnPoint + Vector3.up;
-        cropTestObj.transform.parent = soilPlot.transform;
+        cropTestObj.transform.parent = soilPlot.transform.parent;
 
         ResetHighlightSize();
     }

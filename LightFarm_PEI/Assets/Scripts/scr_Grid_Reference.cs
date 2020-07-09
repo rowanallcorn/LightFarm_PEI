@@ -22,7 +22,6 @@ public class scr_Grid_Reference : MonoBehaviour
     public bool isPlantingSeed = false;
 
     //For Holding Insantiated Objects in Scenes, cleaner
-    public GameObject obj_CropHolder;
     public GameObject obj_SoilHolder;
     public GameObject obj_FarmHolder;
 
@@ -136,8 +135,14 @@ public class scr_Grid_Reference : MonoBehaviour
                 {
                     if (isPlantingSeed)
                     {
-                        PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point));
+                        PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point), hit.collider.gameObject);
                     }
+                }
+
+                //FOR TESTING
+                //if hitting crop, harvest it
+                if (hit.collider.tag == "Crop") {
+                    hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
                 }
 
 
@@ -176,7 +181,7 @@ public class scr_Grid_Reference : MonoBehaviour
     }
 
 
-    void PlantCrop(Vector3 spawnPoint)
+    void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
         Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
 
@@ -198,7 +203,7 @@ public class scr_Grid_Reference : MonoBehaviour
         //crop
         GameObject cropTestObj = Instantiate(pre_Crop);
         cropTestObj.transform.position = spawnPoint + Vector3.up;
-        cropTestObj.transform.parent = obj_CropHolder.transform;
+        cropTestObj.transform.parent = soilPlot.transform;
 
         ResetHighlightSize();
     }

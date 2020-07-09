@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8221970597491647023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710683094726860986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee428cb331148446b050ed77095e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soilWater: 25
+  soilFertilizer: 25
+  soilMinerals: 25
+  soilRotation: 25
 --- !u!1001 &4657209415085080627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,3 +95,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
+--- !u!1 &6710683094726860986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4657209415085080627}
+  m_PrefabAsset: {fileID: 0}

@@ -47,9 +47,9 @@ public class scr_Grid_Reference : MonoBehaviour
             mouseHeld = false;
             //highlight no longer active
             obj_highlight.SetActive(false);
-            
+
             //currently checks position, but also tils the spot selected
-            CheckPosition();        
+            CheckPosition();
         }
 
         //when mouse is held down
@@ -58,8 +58,8 @@ public class scr_Grid_Reference : MonoBehaviour
             HighlightPosition();
 
             //if the player is trying to place an object
-            if(isPlacingObject)
-            PlacingObject(obj_TestObject);
+            if (isPlacingObject)
+                PlacingObject(obj_TestObject);
         }
 
     }
@@ -76,7 +76,8 @@ public class scr_Grid_Reference : MonoBehaviour
         {
             //centre grid point
             obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
-            //obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
+            if (sc_Grid.cellSize == 1)
+                obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
 
             //if player is placing an object, change the grid point
             if (isPlacingObject)
@@ -86,7 +87,7 @@ public class scr_Grid_Reference : MonoBehaviour
             }
 
             //move up slightly to be above ground
-            obj_highlight.transform.position = new Vector3(obj_highlight.transform.position.x, obj_highlight.transform.position.y+ .05f, obj_highlight.transform.position.z);
+            obj_highlight.transform.position = new Vector3(obj_highlight.transform.position.x, obj_highlight.transform.position.y + .05f, obj_highlight.transform.position.z);
         }
     }
 
@@ -104,16 +105,18 @@ public class scr_Grid_Reference : MonoBehaviour
             if (hit.collider != null)
             {
 
-                
+
                 //only if hitting ground layer
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-
                     if (isTillingSoil)
                     {
                         //Get raycast's position as a point on the grid
-                        TillSoil(sc_Grid.GetPointOnGridCentred(hit.point));
-                        //TillSoil(sc_Grid.GetPointOnGridCorner(hit.point));
+
+                        if (sc_Grid.cellSize == 1)
+                            TillSoil(sc_Grid.GetPointOnGridCorner(hit.point));
+                        else
+                            TillSoil(sc_Grid.GetPointOnGridCentred(hit.point));
                     }
 
                     //if player is placing an object
@@ -122,7 +125,7 @@ public class scr_Grid_Reference : MonoBehaviour
                         //if it's bigger, the gridpoint is counted by the corner, otherwise centred
                         if (biggerObject)
                         {
-                           PlaceObject(sc_Grid.GetPointOnGridCorner(hit.point), obj_TestObject);
+                            PlaceObject(sc_Grid.GetPointOnGridCorner(hit.point), obj_TestObject);
                         }
                         else
                         {
@@ -135,10 +138,19 @@ public class scr_Grid_Reference : MonoBehaviour
                 //only if hitting farming plot
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("FarmPlot"))
                 {
+                    //TODO implement quantity checks for different seeds, and type of seed being planted
                     if (isPlantingSeed)
                     {
-                        PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point), hit.collider.gameObject);
-                        //PlantCrop(sc_Grid.GetPointOnGridCorner(hit.point), hit.collider.gameObject);
+                        if (hit.collider.gameObject.tag == "RaisedBed") {
+                            
+                        }
+                        else
+                        {
+                            if (sc_Grid.cellSize == 1)
+                                PlantCrop(hit.collider.gameObject.transform.position, hit.collider.gameObject);
+                            else
+                                PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point), hit.collider.gameObject);
+                        }
                     }
                 }
 
@@ -158,16 +170,20 @@ public class scr_Grid_Reference : MonoBehaviour
     //FOR TESTING
     void TillSoil(Vector3 spawnPoint) {
 
-        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, .5f, sc_Grid.cellSize / 2);
-        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , .5f, sc_Grid.cellSize);
+        Vector3 halfCellSize;
+
+        //for collision checking
+        if (sc_Grid.cellSize == 1)
+            halfCellSize = new Vector3(sc_Grid.cellSize / 2, .5f, sc_Grid.cellSize / 2);
+        else
+            halfCellSize = new Vector3((sc_Grid.cellSize / 2) - .01f, .25f, (sc_Grid.cellSize / 2) - .01f);
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
         for (int i = 0; i < colliders.Length; i++)
         {
             //things to avoid
-            //TODO change tag to actual object tag or layer
-            if (colliders[i].tag == "Farm")
+            if (colliders[i].tag == "Farm" || colliders[i].gameObject.layer == 9)
             {
                 //won't instantiate later down
                 return;
@@ -188,14 +204,13 @@ public class scr_Grid_Reference : MonoBehaviour
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
         Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
-       // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
+        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
         for (int i = 0; i < colliders.Length; i++)
         {
             //things to avoid
-            //TODO change tag to actual object tag or layer
             if (colliders[i].tag == "Crop")
             {
                 //won't instantiate later down
@@ -212,7 +227,6 @@ public class scr_Grid_Reference : MonoBehaviour
 
         ResetHighlightSize();
     }
-
 
     //when placing an object
     void PlacingObject(GameObject objToPlace) {
@@ -244,7 +258,8 @@ public class scr_Grid_Reference : MonoBehaviour
         //TODO: get object size half
         //rework with assets
         Vector3 halfObjectSize = objToPlace.transform.localScale * .5f;
-        halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
+        halfObjectSize = new Vector3(halfObjectSize.x, halfObjectSize.y, halfObjectSize.z);
+       // halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
 
         
         //check if collision????
@@ -252,7 +267,6 @@ public class scr_Grid_Reference : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             //things to avoid
-            //TODO change tag to actual object tag or layer
             if (colliders[i].tag == "Farm" || colliders[i].gameObject.layer == 9)
             {
                 //won't instantiate later down

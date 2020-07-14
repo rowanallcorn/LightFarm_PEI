@@ -57,14 +57,31 @@ public class scr_Crop_Controller : MonoBehaviour
             sc_SoilHealth.lastCrop = this.name;
             sc_SoilHealth.lastCropFamily = cropFamily;
 
+            //TODO Text later
             Debug.Log(this.name + " Harvested.");
-            Destroy(this.gameObject);
+
+            //will implement later
+            CalculateQuality();
+
+            //ANIM TESTING
+            GetComponentInParent<Animator>().Play("anim_Crop_Harvest");
+            Destroy(this.gameObject, .3f);
         }
         else
         {
+            //TODO text later
             //time left to grow
             Debug.Log("Wait " + GetComponent<scr_Crop_Growth>().timeToGrow.ToString("0") + "s.");
         }
+
+    }
+
+    private void CalculateQuality() {
+
+        //TODO
+        //based on soil health stats > crop Quality
+        //use crop quality to give yield, and grade
+        //higher quality = better
 
     }
 

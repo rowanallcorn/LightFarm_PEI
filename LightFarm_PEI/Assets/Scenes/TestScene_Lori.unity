@@ -739,9 +739,9 @@ MonoBehaviour:
   pre_Crop: {fileID: 7107343037138869641, guid: f3689ac8d3638674085be252cb7b117e,
     type: 3}
   obj_TestObject: {fileID: 1849225538}
-  isPlacingObject: 0
-  isTillingSoil: 1
-  isPlantingSeed: 1
+  isPlacingObject: 1
+  isTillingSoil: 0
+  isPlantingSeed: 0
   obj_SoilHolder: {fileID: 1949545675}
   obj_FarmHolder: {fileID: 1133563682}
 --- !u!1 &801755801

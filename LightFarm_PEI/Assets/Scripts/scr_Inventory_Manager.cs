@@ -1,55 +1,138 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scr_Inventory_Manager : MonoBehaviour
 {
     [SerializeField]
     //growing plot seeds
-    public int potatoSeeds;
+    //Potato Family.
+    public int potatoSeeds = 0;
+    public Text PotatoSeedsAmountText;
+
+    //Legumes Family.
+    public int peaSeeds = 0;
+    public Text PeaSeedsAmountText;
+
+    //Brassicas Family.
+    public int cauliflowerSeeds = 0;
+    public Text CauliflowerSeedsAmountText;
+
+    //Cover Crop.
+    public int winterWheatSeeds = 0;
+    public Text WinterWheatSeedsAmountText;
 
     //hedge seeds
-    public int blueBerryBushSeeds;
-
+    public int blueBerryBushSeeds = 0;
+    public Text BlueBerryBushSeedsAmountText;
 
     //Tools
-    public bool waterCan;
-    public bool harvestingBasket;
-    public bool hoe;
-    public bool pesticides;
+    //Harvests and sells fully grown crops.
+    public bool Basket = false;
+
+    // Tills soil in preparation for planting.
+    public bool Hoe = false;
+
+    //Waters crop.
+    public bool waterCan = false;
+
+    //possiblilty of multiple different types of fertilizers for later implemenetation.
+    public bool Fertilizer = false;
+
+    //Improves soil and crop quailty.
+    public bool Minerals = false;
+    
     
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PotatoSeedsAmountText.text = potatoSeeds.ToString();
+        PeaSeedsAmountText.text = peaSeeds.ToString();
+        CauliflowerSeedsAmountText.text = cauliflowerSeeds.ToString();
+        WinterWheatSeedsAmountText.text = winterWheatSeeds.ToString();
+        BlueBerryBushSeedsAmountText.text = blueBerryBushSeeds.ToString();
     }
 
     //simple increase and decrease functions used for ui buttons
-    void IncreasePotatoSeedCount()
+    public void IncreasePotatoSeedCount()
     {
         potatoSeeds++;
     }
-
-    void DcreasePotatoSeedCount()
+    public void DecreasePotatoSeedCount()
     {
-        potatoSeeds--;
+        if(potatoSeeds > 0)
+        {
+            potatoSeeds--;
+        }
+        else { potatoSeeds = 0; }
+        
     }
 
-    void IncreaseBlueBerrySeedCount()
+
+    public void IncreasePeaSeedCount()
+    {
+        peaSeeds++;
+    }
+    public void DecreasePeaSeedCount()
+    {
+        if (peaSeeds > 0)
+        {
+            peaSeeds--;
+        }
+        else { peaSeeds = 0; }
+
+    }
+
+
+    public void IncreaseCauliflowerSeedCount()
+    {
+        cauliflowerSeeds++;
+    }
+    public void DecreaseCauliflowerSeedCount()
+    {
+        if (cauliflowerSeeds > 0)
+        {
+            cauliflowerSeeds--;
+        }
+        else { cauliflowerSeeds = 0; }
+
+    }
+
+
+    public void IncreaseWinterWheatSeedCount()
+    {
+        winterWheatSeeds++;
+    }
+    public void DecreaseWinterWheatSeedCount()
+    {
+        if (winterWheatSeeds > 0)
+        {
+            winterWheatSeeds--;
+        }
+        else { winterWheatSeeds = 0; }
+
+    }
+
+
+    public void IncreaseBlueBerrySeedCount()
     {
         blueBerryBushSeeds++;
     }
-
-    void DcreaseBlueBerrySeedCount()
+    public void DecreaseBlueBerrySeedCount()
     {
-        blueBerryBushSeeds--;
+        if (blueBerryBushSeeds > 0)
+        {
+            blueBerryBushSeeds--;
+        }
+        else { blueBerryBushSeeds = 0; }
     }
 }

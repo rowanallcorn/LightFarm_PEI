@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 0f7c27a3a88823a4a94daa03b900097a
+guid: 796bf4cef26b9124aa9ad4e142032527
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PeaGreen
+    second: {fileID: 2100000, guid: ffdd4b58020336246a72483db13070b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PeaRoot
+    second: {fileID: 2100000, guid: 231943a28af197a4c8c7ec7321a82ea4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope
+    second: {fileID: 2100000, guid: ef574aff044f2bf429ee44ac948b1fa3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TrellisWood
+    second: {fileID: 2100000, guid: 3ecf1760fc464c148a9aefc2e174a97c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +54,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.3
+    globalScale: 0.4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +101,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.003
+    globalScale: 0.4
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

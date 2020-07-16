@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 219650607}
   - component: {fileID: 219650606}
   - component: {fileID: 219650605}
+  - component: {fileID: 219650608}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -516,8 +517,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -540,13 +541,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219650604}
-  m_LocalRotation: {x: 0.3830304, y: -0, z: -0, w: 0.9237358}
-  m_LocalPosition: {x: 88.6, y: 30.2, z: -9.4}
+  m_LocalRotation: {x: 0.12796961, y: -0.86698717, z: 0.36540413, w: 0.31374666}
+  m_LocalPosition: {x: 56.6, y: 48, z: 48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 45.043003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45.553, y: -139.957, z: 0.605}
+--- !u!114 &219650608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219650604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40889bc126d2b694aa1fa75f288211e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomOutMin: 1
+  zoomOutMax: 10
 --- !u!1 &242020983
 GameObject:
   m_ObjectHideFlags: 0
@@ -4762,6 +4777,7 @@ GameObject:
   - component: {fileID: 1574372650}
   - component: {fileID: 1574372649}
   - component: {fileID: 1574372648}
+  - component: {fileID: 1574372651}
   m_Layer: 0
   m_Name: Main Camera Orthographic (2)
   m_TagString: MainCamera
@@ -4834,6 +4850,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 30.000002, y: -135, z: 0}
+--- !u!114 &1574372651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574372647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40889bc126d2b694aa1fa75f288211e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomOutMin: 1
+  zoomOutMax: 50
 --- !u!1001 &1597255714
 PrefabInstance:
   m_ObjectHideFlags: 0

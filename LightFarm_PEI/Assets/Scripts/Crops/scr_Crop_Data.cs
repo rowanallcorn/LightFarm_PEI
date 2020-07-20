@@ -10,7 +10,7 @@ public class scr_Crop_Data : ScriptableObject
     public float totalTimeGrowthSeconds;
 
     //3d model
-    public GameObject model;
+    public GameObject[] models;
 
     //plant family, for future rotation stuff
     public string plantRotationFamily;

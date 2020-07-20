@@ -16,7 +16,9 @@ public class scr_Crop_Controller : MonoBehaviour
     public scr_Crop_Data data;
 
     //for rotation check
-    public string cropFamily; 
+    public string cropFamily;
+
+    public GameObject cropModel;
 
     void Start()
     {
@@ -95,15 +97,36 @@ public class scr_Crop_Controller : MonoBehaviour
         cropFamily = data.plantRotationFamily;
 
         //set crop model
-        GameObject cropModel = Instantiate(data.model, transform.position, transform.rotation) as GameObject;
+        cropModel = Instantiate(data.models[0], transform.position, transform.rotation) as GameObject;
         //for tesing
-        cropModel.transform.position -= new Vector3(0, .5f, 0);
-        cropModel.transform.localScale = new Vector3(.25f, .45f, .25f);
+       // cropModel.transform.position -= new Vector3(0, .25f, 0);
+        ////cropModel.transform.localScale = new Vector3(.25f, .45f, .25f);
+        cropModel.transform.Rotate(270,0,0);
 
         //set as child of prefab
         cropModel.transform.parent = transform;
 
         //activate crop
         gameObject.SetActive(true);
+    }
+
+    public void ChangeCropModel(int stage) {
+        //set crop model
+        GameObject newCropModel = Instantiate(data.models[stage], transform.position, transform.rotation) as GameObject;
+
+        //for tesing
+        //newCropModel.transform.position -= new Vector3(0, .5f, 0);
+       // //newCropModel.transform.localScale = new Vector3(.25f, .45f, .25f);
+
+        //set as child of prefab
+        newCropModel.transform.parent = transform;
+
+        Destroy(cropModel);
+
+        //activate crop
+        newCropModel.SetActive(true);
+
+        cropModel = newCropModel;
+
     }
 }

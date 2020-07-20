@@ -51,7 +51,13 @@ public class scr_Crop_Growth : MonoBehaviour
     {
         halfDoneGrowing = true;
         //FOR TESTING
-        this.transform.localScale += new Vector3(.25f, .25f, .25f);
+        if (GetComponent<scr_Crop_Controller>().data.models[1] == null)
+        {
+            this.transform.localScale += new Vector3(.15f, .15f, .15f);
+        }
+        else {
+            GetComponent<scr_Crop_Controller>().ChangeCropModel(1);
+        }
     }
 
     //set plant as finished growing
@@ -62,7 +68,13 @@ public class scr_Crop_Growth : MonoBehaviour
         GetComponent<scr_Crop_Controller>().finishedGrowing = true;
 
         //FOR TESTING
-        this.transform.localScale += new Vector3(.25f, .25f, .25f);
+        if (GetComponent<scr_Crop_Controller>().data.models[2] == null)
+        {
+            this.transform.localScale += new Vector3(.15f, .15f, .15f);
+        }
+        else {
+            GetComponent<scr_Crop_Controller>().ChangeCropModel(2);
+        }
 
     }
 

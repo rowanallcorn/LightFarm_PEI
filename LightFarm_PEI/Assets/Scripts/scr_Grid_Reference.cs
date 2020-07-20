@@ -20,10 +20,17 @@ public class scr_Grid_Reference : MonoBehaviour
 
     public bool isTillingSoil = false;
     public bool isPlantingSeed = false;
+    public bool isHarvestingCrop = false;
 
     //For Holding Insantiated Objects in Scenes, cleaner
     public GameObject obj_SoilHolder;
     public GameObject obj_FarmHolder;
+
+
+    //For planting specific crops
+    public scr_Crop_Data[] cropList;
+    public string currentlyPlanting;
+   // public bool isPlantingPea, isPlantingPotato;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +93,8 @@ public class scr_Grid_Reference : MonoBehaviour
                     obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
             }
 
+            obj_highlight.transform.position -= new Vector3(0f, .5f, 0f);
+
             //move up slightly to be above ground
             obj_highlight.transform.position = new Vector3(obj_highlight.transform.position.x, obj_highlight.transform.position.y + .05f, obj_highlight.transform.position.z);
         }
@@ -138,11 +147,57 @@ public class scr_Grid_Reference : MonoBehaviour
                 //only if hitting farming plot
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("FarmPlot"))
                 {
+                    if (isHarvestingCrop)
+                    {
+                        if (hit.collider.gameObject.tag != "RaisedBed")
+                        {
+                            //if clicking on soil, and there's a child (crop), try to harvest it
+                            if (hit.collider.gameObject.transform.parent.childCount > 1)
+                            {
+                               hit.collider.gameObject.transform.parent.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
+                            }
+
+                            /*
+                            //FOR TESTING
+                            //if hitting crop, harvest it
+                            if (hit.collider.tag == "Crop")
+                            {
+                                hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
+                            }*/
+                        }
+
+
+                        if (hit.collider.gameObject.tag == "RaisedBed")
+                        {
+                            {
+                                
+                                if (hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots[0].transform.childCount > 1)
+                                {
+                                    //for each plot
+                                    foreach (var singlePlot in hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots)
+                                    {
+                                        //harvest the crop
+                                        singlePlot.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
                     //TODO implement quantity checks for different seeds, and type of seed being planted
                     if (isPlantingSeed)
                     {
+
                         if (hit.collider.gameObject.tag == "RaisedBed") {
-                            
+                            //for each plot
+                            foreach (var singlePlot in hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots)
+                            {
+                                //Debug.Log(singlePlot);
+                                //plant the crop
+                                PlantCrop(singlePlot.transform.position, singlePlot.transform.GetChild(0).gameObject);
+                            }
+
                         }
                         else
                         {
@@ -152,15 +207,9 @@ public class scr_Grid_Reference : MonoBehaviour
                                 PlantCrop(sc_Grid.GetPointOnGridCentred(hit.point), hit.collider.gameObject);
                         }
                     }
+
+                    
                 }
-
-                //FOR TESTING
-                //if hitting crop, harvest it
-                if (hit.collider.tag == "Crop") {
-                    hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
-                }
-
-
 
             }
         }
@@ -195,6 +244,7 @@ public class scr_Grid_Reference : MonoBehaviour
         //tilled spot
         GameObject tilTestObj = Instantiate(pre_TilledSpot);
         tilTestObj.transform.position = spawnPoint;
+        tilTestObj.transform.position -= new Vector3(0f, .5f, 0f);
         tilTestObj.transform.parent = obj_SoilHolder.transform;
 
         ResetHighlightSize();
@@ -203,8 +253,8 @@ public class scr_Grid_Reference : MonoBehaviour
 
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
-        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
-        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
+       // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
+        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -221,9 +271,11 @@ public class scr_Grid_Reference : MonoBehaviour
 
         //TODO, change for specific crops clicked
         //crop
-        GameObject cropTestObj = Instantiate(pre_Crop);
-        cropTestObj.transform.position = spawnPoint + Vector3.up;
-        cropTestObj.transform.parent = soilPlot.transform.parent;
+        GameObject cropObj = Instantiate(pre_Crop);     
+        cropObj.transform.position = spawnPoint + Vector3.up;
+        cropObj.transform.parent = soilPlot.transform.parent;
+
+        PlantSpecificCrop( cropObj);
 
         ResetHighlightSize();
     }
@@ -278,6 +330,7 @@ public class scr_Grid_Reference : MonoBehaviour
         //intsantiate the object in the spot
         GameObject farmTestObj = Instantiate(objToPlace);
         farmTestObj.transform.position = spawnPoint;
+        farmTestObj.transform.position -= new Vector3(0f, .5f, 0f);
         farmTestObj.transform.parent = obj_FarmHolder.transform;
 
         ResetHighlightSize();
@@ -288,5 +341,43 @@ public class scr_Grid_Reference : MonoBehaviour
         //reset highlight size
         obj_highlight.transform.localScale = new Vector3(2, 2, 1);
     }
+
+
+    public void PlantSpecificCrop(GameObject cropObj) {
+
+        switch (currentlyPlanting)
+        {
+            case "Carrot":
+                break;
+            case "Cauliflower":
+                break;
+            case "Pea":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[2];
+                break;
+            case "Potato":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[3];
+                break;
+            case "Wheat":
+                break;
+
+
+        }
+
+    }
+
+    /*
+    public void PlantSpecificCrop( GameObject cropObj)
+    {
+
+        if (isPlantingPea)
+        {
+            cropObj.GetComponent<scr_Crop_Controller>().data = cropList[2];
+        }
+        else if (isPlantingPotato)
+        {
+            cropObj.GetComponent<scr_Crop_Controller>().data = cropList[3];
+        }
+
+    }*/
 
 }

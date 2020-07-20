@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finishedGrowing: 0
   cropQuality: 0
-  data: {fileID: 11400000, guid: 91980d2bf4f76fc449c7055b88a5d9f3, type: 2}
+  data: {fileID: 0}
   cropFamily: 
 --- !u!114 &7107343037138869640
 MonoBehaviour:

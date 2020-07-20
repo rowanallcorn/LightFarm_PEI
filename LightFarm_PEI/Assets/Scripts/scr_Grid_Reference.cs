@@ -345,19 +345,23 @@ public class scr_Grid_Reference : MonoBehaviour
 
     public void PlantSpecificCrop(GameObject cropObj) {
 
+        //based on "currentlyPlanting" string, set the right data for the plant object
         switch (currentlyPlanting)
         {
             case "Carrot":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Carrot")];
                 break;
             case "Cauliflower":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Cauliflower")];
                 break;
             case "Pea":
-                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[2];
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Pea")];
                 break;
             case "Potato":
-                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[3];
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Potato")];
                 break;
             case "Wheat":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Wheat")];
                 break;
 
 
@@ -365,7 +369,24 @@ public class scr_Grid_Reference : MonoBehaviour
 
     }
 
-    /*
+    //find a crop based on it's name and return it's index in the list
+    private int GetCropIndexInList(string cropName) {
+
+        //look for crop with matching name
+        for (int i = 0; i < cropList.Length; i++)
+        {
+            //if match, return index
+            if (cropList[i].name == cropName)
+            {
+                return i;
+            }
+        }
+
+        //otherwise 0
+        return 0;
+    }
+
+    /* for bools
     public void PlantSpecificCrop( GameObject cropObj)
     {
 

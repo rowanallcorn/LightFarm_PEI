@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99898d19454bb424baf2311d33572cc0, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  totalTimeGrowthSeconds: 0
-  model: {fileID: 0}
+  totalTimeGrowthSeconds: 10
+  models:
+  - {fileID: -927199367670048503, guid: a6b4bf0e07e27fd4394d0aa57d2c6451, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   plantRotationFamily: Root

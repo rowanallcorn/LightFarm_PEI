@@ -431,8 +431,8 @@ MonoBehaviour:
   Basket: 0
   Hoe: 0
   waterCan: 0
-  Fertilizer: 0
-  Minerals: 0
+  fertilizer: 0
+  minerals: 0
 --- !u!4 &122567917
 Transform:
   m_ObjectHideFlags: 0
@@ -3951,6 +3951,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 122567916}
+    - target: {fileID: 7738876756499618709, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7738876755679236671, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

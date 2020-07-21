@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
 {
-    //varibles go here as ussual
+    public int SeedAmount = 0;
+    public int IncrementDecermentAmount = 0;
+
+
 
     protected override void OnClick()
     {
-        // tells the bvutton what to do when clicked.
+        // tells the button what to do when clicked.
+        SeedAmount += IncrementDecermentAmount;
+
     }
 
     // Start is called before the first frame update

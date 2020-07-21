@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class scr_Inventory_Manager : MonoBehaviour
 {
+    enum seedType {Potato, Pea, Cauliflower, Winterwheat, Blueberry };
+
+    enum toolType {Basket, Hoe, Wateringcan, Fertilizer, Minerals };
+
+
+
     [SerializeField]
     //growing plot seeds
     //Potato Family.
@@ -38,10 +44,10 @@ public class scr_Inventory_Manager : MonoBehaviour
     public bool waterCan = false;
 
     //possiblilty of multiple different types of fertilizers for later implemenetation.
-    public bool Fertilizer = false;
+    public bool fertilizer = false;
 
     //Improves soil and crop quailty.
-    public bool Minerals = false;
+    public bool minerals = false;
     
     
     

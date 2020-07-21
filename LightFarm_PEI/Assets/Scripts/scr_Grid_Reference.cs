@@ -154,23 +154,15 @@ public class scr_Grid_Reference : MonoBehaviour
                             //if clicking on soil, and there's a child (crop), try to harvest it
                             if (hit.collider.gameObject.transform.parent.childCount > 1)
                             {
-                               hit.collider.gameObject.transform.parent.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
+                                hit.collider.gameObject.transform.parent.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
                             }
 
-                            /*
-                            //FOR TESTING
-                            //if hitting crop, harvest it
-                            if (hit.collider.tag == "Crop")
-                            {
-                                hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
-                            }*/
                         }
-
 
                         if (hit.collider.gameObject.tag == "RaisedBed")
                         {
                             {
-                                
+
                                 if (hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots[0].transform.childCount > 1)
                                 {
                                     //for each plot
@@ -208,7 +200,32 @@ public class scr_Grid_Reference : MonoBehaviour
                         }
                     }
 
-                    
+
+                }
+                //if hitting crop directly
+                else if (hit.collider.tag == "Crop")
+                {
+                    if (isHarvestingCrop)
+                    {
+                        //if crop is not part of raised bed, but single soil
+                        if (hit.collider.gameObject.transform.root.gameObject.name == obj_SoilHolder.name)
+                        {
+                            hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
+                        }
+                        //if hitting crop in a raised bed
+                        else if (hit.collider.gameObject.transform.root.gameObject.name == obj_FarmHolder.name)
+                        {
+                            if (hit.collider.gameObject.transform.parent.parent.GetComponent<scr_Raised_Bed>().soilPlots[0].transform.childCount > 1)
+                            {
+                                //for each plot
+                                foreach (var singlePlot in hit.collider.gameObject.transform.parent.parent.GetComponent<scr_Raised_Bed>().soilPlots)
+                                {
+                                    //harvest the crop
+                                    singlePlot.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
@@ -294,7 +311,6 @@ public class scr_Grid_Reference : MonoBehaviour
         //if the object is bigger, change the highlight to match the size
         if (biggerObject)
         {
-            //TODO
             //set to size
             obj_highlight.transform.localScale = new Vector3(objToPlace.transform.localScale.x, objToPlace.transform.localScale.z, 1);
         }
@@ -360,13 +376,10 @@ public class scr_Grid_Reference : MonoBehaviour
             case "Potato":
                 cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Potato")];
                 break;
-            case "Wheat":
-                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Wheat")];
+            case "Winter Wheat":
+                cropObj.GetComponent<scr_Crop_Controller>().data = cropList[GetCropIndexInList("Winter Wheat")];
                 break;
-
-
         }
-
     }
 
     //find a crop based on it's name and return it's index in the list

@@ -4720,7 +4720,7 @@ MonoBehaviour:
   isPlacingObject: 0
   isTillingSoil: 1
   isPlantingSeed: 1
-  isHarvestingCrop: 0
+  isHarvestingCrop: 1
   obj_SoilHolder: {fileID: 1073091149}
   obj_FarmHolder: {fileID: 880872825}
   cropList:

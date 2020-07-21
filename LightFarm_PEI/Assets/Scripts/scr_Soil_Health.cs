@@ -10,15 +10,15 @@ public class scr_Soil_Health : MonoBehaviour
     public string lastCrop = "", lastCropFamily ="";
 
     //what to lower stats by
-    public int decrementValue = 5;
+    public int decrementValue = 1;
     //what to raise stats by
-    public int incrementValue = 5;
-    private int maxValue = 25;
+    public int incrementValue = 1;
+    private int maxValue = 5;
 
     // Start is called before the first frame update
     void Start()
     {
-        MaxOutStats();
+        InitializeStats();
     }
 
     //decreases
@@ -30,20 +30,20 @@ public class scr_Soil_Health : MonoBehaviour
 
 
     public void DecreaseWater() {
-
+        soilWater -= decrementValue;
     }
 
     public void DecreaseFertilizer()
     {
-
+        soilFertilizer -= decrementValue;
     }
 
     public void DecreaseMinerals() {
-
+        soilMinerals -= decrementValue;
     }
 
     public void DecreaseRotation() {
-        soilRotation-= decrementValue;
+        soilRotation -= decrementValue;
     }
 
     //increases
@@ -57,22 +57,26 @@ public class scr_Soil_Health : MonoBehaviour
 
     public void IncreaseWater()
     {
-
+        soilWater += incrementValue;
     }
 
     public void IncreaseFertilizer()
     {
-
+        soilFertilizer += incrementValue;
     }
 
     public void IncreaseMinerals()
     {
-
+        soilMinerals += incrementValue;
     }
 
     public void IncreaseRotation()
     {
-        soilRotation += incrementValue;
+        //if less than max value
+        if (soilRotation > maxValue)
+        {
+            soilRotation += incrementValue;
+        }
     }
 
 
@@ -83,20 +87,32 @@ public class scr_Soil_Health : MonoBehaviour
         {
             DecreaseRotation();
         }
-
-
         //if current crop is the same crop family as last
-        if (currentCropFamily == lastCropFamily)
+        else if (currentCropFamily == lastCropFamily)
         {
             DecreaseRotation();
+        }
+        else
+        {
+            IncreaseRotation();
         }
 
     }
 
-    public void MaxOutStats() {
+    public void MaxOutAllStats() {
         soilWater = maxValue;
         soilFertilizer = maxValue;
         soilMinerals = maxValue;
+        soilRotation = maxValue;
+    }
+
+    //starting stats
+    private void InitializeStats() {
+
+        soilFertilizer = 0;
+        soilWater = 0;
+        soilMinerals = 0;
+        //rotation starts high, and decreases each wrong rotation
         soilRotation = maxValue;
 
     }

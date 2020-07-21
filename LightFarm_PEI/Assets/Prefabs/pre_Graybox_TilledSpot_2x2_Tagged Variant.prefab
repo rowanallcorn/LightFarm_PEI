@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee428cb331148446b050ed77095e823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soilWater: 25
-  soilFertilizer: 25
-  soilMinerals: 25
-  soilRotation: 25
+  soilWater: 5
+  soilFertilizer: 5
+  soilMinerals: 5
+  soilRotation: 5
+  lastCrop: 
+  lastCropFamily: 
+  decrementValue: 1
+  incrementValue: 1
 --- !u!1001 &4657209415085080627
 PrefabInstance:
   m_ObjectHideFlags: 0

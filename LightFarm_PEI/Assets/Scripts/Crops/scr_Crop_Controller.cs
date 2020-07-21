@@ -26,9 +26,6 @@ public class scr_Crop_Controller : MonoBehaviour
 
         InitializeCrop();
 
-        //FOR TESTING
-        //set the time for crop to grow
-       // sc_CropGrowth.timeToGrow = 5f;
         sc_CropGrowth.StartGrowth();
 
         sc_SoilHealth = GetComponentInParent<scr_Soil_Health>();
@@ -60,7 +57,7 @@ public class scr_Crop_Controller : MonoBehaviour
             sc_SoilHealth.lastCropFamily = cropFamily;
 
             //TODO Text later
-            Debug.Log(this.name + " Harvested.");
+           // Debug.Log(this.name + " Harvested.");
 
             //will implement later
             CalculateQuality();
@@ -85,6 +82,25 @@ public class scr_Crop_Controller : MonoBehaviour
         //use crop quality to give yield, and grade
         //higher quality = better
 
+        //if crop quality total (4 stats added) if over a certain level, it's of higher quality
+        if(cropQuality > 15){
+            Debug.Log("(A) " + this.name + " Harvested.");
+
+        }
+        else if(cropQuality> 10){
+            Debug.Log("(B) " + this.name + " Harvested." );
+
+        }
+        else if (cropQuality > 5){
+            Debug.Log("(C) " + this.name + " Harvested.");
+
+        }
+        else if (cropQuality <= 5)
+        {
+            Debug.Log("(D) " + this.name + " Harvested.");
+
+        }
+
     }
 
     //set crop variables based on scriptable object
@@ -97,11 +113,8 @@ public class scr_Crop_Controller : MonoBehaviour
         cropFamily = data.plantRotationFamily;
 
         //set crop model
-        cropModel = Instantiate(data.models[0], transform.position, transform.rotation) as GameObject;
-        //for tesing
-       // cropModel.transform.position -= new Vector3(0, .25f, 0);
-        ////cropModel.transform.localScale = new Vector3(.25f, .45f, .25f);
-        cropModel.transform.Rotate(270,0,0);
+        cropModel = Instantiate(data.models[0]) as GameObject;
+        cropModel.transform.position = transform.position;
 
         //set as child of prefab
         cropModel.transform.parent = transform;
@@ -113,10 +126,6 @@ public class scr_Crop_Controller : MonoBehaviour
     public void ChangeCropModel(int stage) {
         //set crop model
         GameObject newCropModel = Instantiate(data.models[stage], transform.position, transform.rotation) as GameObject;
-
-        //for tesing
-        //newCropModel.transform.position -= new Vector3(0, .5f, 0);
-       // //newCropModel.transform.localScale = new Vector3(.25f, .45f, .25f);
 
         //set as child of prefab
         newCropModel.transform.parent = transform;

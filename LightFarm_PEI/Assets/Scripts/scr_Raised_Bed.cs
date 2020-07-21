@@ -12,6 +12,7 @@ public class scr_Raised_Bed : MonoBehaviour
         InitializePlots();
     }
 
+    //add each plot into list that's attached to raised bed object
     void InitializePlots() {
         for (int i = 0; i < this.gameObject.transform.childCount; i++)
         {

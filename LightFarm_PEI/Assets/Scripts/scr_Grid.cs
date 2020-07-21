@@ -140,7 +140,7 @@ public class scr_Grid : MonoBehaviour
     }
 
     //Visual Editor Reference
-    /*
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -152,5 +152,5 @@ public class scr_Grid : MonoBehaviour
             }
 
         }
-    }*/
+    }
 }

@@ -30,7 +30,11 @@ public class scr_Grid_Reference : MonoBehaviour
     //For planting specific crops
     public scr_Crop_Data[] cropList;
     public string currentlyPlanting;
-   // public bool isPlantingPea, isPlantingPotato;
+    // public bool isPlantingPea, isPlantingPotato;
+
+
+    //for soil health options
+    public bool isWatering, isFertilizing, isAddingMinerals;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,7 @@ public class scr_Grid_Reference : MonoBehaviour
         {
             //mouse held on press
             mouseHeld = true;
+            ResetHighlightSize();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -57,10 +62,14 @@ public class scr_Grid_Reference : MonoBehaviour
 
             //currently checks position, but also tils the spot selected
             CheckPosition();
+
+            //testing soil health options // adding on
+            CheckingSoil();
         }
 
         //when mouse is held down
-        if (mouseHeld) {
+        if (mouseHeld)
+        {
             //enable highlight
             HighlightPosition();
 
@@ -72,7 +81,8 @@ public class scr_Grid_Reference : MonoBehaviour
     }
 
     //move around the highlight object when the player holds down, to see where interacting
-    void HighlightPosition() {
+    void HighlightPosition()
+    {
         //enable the highlight
         obj_highlight.SetActive(true);
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,17 +128,8 @@ public class scr_Grid_Reference : MonoBehaviour
                 //only if hitting ground layer
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    if (isTillingSoil)
-                    {
-                        //Get raycast's position as a point on the grid
 
-                        if (sc_Grid.cellSize == 1)
-                            TillSoil(sc_Grid.GetPointOnGridCorner(hit.point));
-                        else
-                            TillSoil(sc_Grid.GetPointOnGridCentred(hit.point));
-                    }
-
-                    //if player is placing an object
+                    //if player is placing an object (raised bed)
                     if (isPlacingObject)
                     {
                         //if it's bigger, the gridpoint is counted by the corner, otherwise centred
@@ -142,7 +143,16 @@ public class scr_Grid_Reference : MonoBehaviour
 
                         }
                     }
+                    //if player is just tilling
+                    else if (isTillingSoil)
+                    {
+                        //Get raycast's position as a point on the grid
 
+                        if (sc_Grid.cellSize == 1)
+                            TillSoil(sc_Grid.GetPointOnGridCorner(hit.point));
+                        else
+                            TillSoil(sc_Grid.GetPointOnGridCentred(hit.point));
+                    }
                 }
                 //only if hitting farming plot
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("FarmPlot"))
@@ -181,7 +191,8 @@ public class scr_Grid_Reference : MonoBehaviour
                     if (isPlantingSeed)
                     {
 
-                        if (hit.collider.gameObject.tag == "RaisedBed") {
+                        if (hit.collider.gameObject.tag == "RaisedBed")
+                        {
                             //for each plot
                             foreach (var singlePlot in hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots)
                             {
@@ -234,7 +245,8 @@ public class scr_Grid_Reference : MonoBehaviour
 
 
     //FOR TESTING
-    void TillSoil(Vector3 spawnPoint) {
+    void TillSoil(Vector3 spawnPoint)
+    {
 
         Vector3 halfCellSize;
 
@@ -270,8 +282,8 @@ public class scr_Grid_Reference : MonoBehaviour
 
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
-       // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
-        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize , 1f, sc_Grid.cellSize );
+        // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
+        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize, 1f, sc_Grid.cellSize);
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -288,23 +300,26 @@ public class scr_Grid_Reference : MonoBehaviour
 
         //TODO, change for specific crops clicked
         //crop
-        GameObject cropObj = Instantiate(pre_Crop);     
+        GameObject cropObj = Instantiate(pre_Crop);
         cropObj.transform.position = spawnPoint + Vector3.up;
         cropObj.transform.parent = soilPlot.transform.parent;
 
-        PlantSpecificCrop( cropObj);
+        PlantSpecificCrop(cropObj);
 
         ResetHighlightSize();
     }
 
     //when placing an object
-    void PlacingObject(GameObject objToPlace) {
+    void PlacingObject(GameObject objToPlace)
+    {
+        
         //if the object is bigger than one cell
         if (objToPlace.transform.localScale.x > sc_Grid.cellSize || objToPlace.transform.localScale.z > sc_Grid.cellSize)
         {
             biggerObject = true;
         }
-        else {
+        else
+        {
             biggerObject = false;
         }
 
@@ -312,12 +327,15 @@ public class scr_Grid_Reference : MonoBehaviour
         if (biggerObject)
         {
             //set to size
-            obj_highlight.transform.localScale = new Vector3(objToPlace.transform.localScale.x, objToPlace.transform.localScale.z, 1);
+             obj_highlight.transform.localScale = new Vector3(objToPlace.transform.localScale.x, objToPlace.transform.localScale.z, 1);
+            //obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent < scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
         }
         else
         {
             ResetHighlightSize();
         }
+
+       // obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
 
     }
 
@@ -327,9 +345,9 @@ public class scr_Grid_Reference : MonoBehaviour
         //rework with assets
         Vector3 halfObjectSize = objToPlace.transform.localScale * .5f;
         halfObjectSize = new Vector3(halfObjectSize.x, halfObjectSize.y, halfObjectSize.z);
-       // halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
+        // halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
 
-        
+
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfObjectSize);
         for (int i = 0; i < colliders.Length; i++)
@@ -353,13 +371,15 @@ public class scr_Grid_Reference : MonoBehaviour
 
     }
 
-    private void ResetHighlightSize() {
+    private void ResetHighlightSize()
+    {
         //reset highlight size
         obj_highlight.transform.localScale = new Vector3(2, 2, 1);
     }
 
 
-    public void PlantSpecificCrop(GameObject cropObj) {
+    public void PlantSpecificCrop(GameObject cropObj)
+    {
 
         //based on "currentlyPlanting" string, set the right data for the plant object
         switch (currentlyPlanting)
@@ -383,7 +403,8 @@ public class scr_Grid_Reference : MonoBehaviour
     }
 
     //find a crop based on it's name and return it's index in the list
-    private int GetCropIndexInList(string cropName) {
+    private int GetCropIndexInList(string cropName)
+    {
 
         //look for crop with matching name
         for (int i = 0; i < cropList.Length; i++)
@@ -413,5 +434,71 @@ public class scr_Grid_Reference : MonoBehaviour
         }
 
     }*/
+
+
+    //dealing with soil health values
+    void CheckingSoil()
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            //FOR TESTING
+            //Debug.DrawLine(ray.origin, hit.point);
+
+            if (hit.collider != null)
+            {
+                //only if hitting ground layer
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("FarmPlot"))
+                {
+                    //if soil is part of a raised bed
+                    if (hit.collider.gameObject.tag == "RaisedBed")
+                    {
+
+                        //for each plot
+                        foreach (var singlePlot in hit.collider.gameObject.GetComponent<scr_Raised_Bed>().soilPlots)
+                        {
+                            //depending on current action tested
+                            if (isWatering)
+                            {
+                                singlePlot.GetComponent<scr_Soil_Health>().IncreaseWater();
+                            }
+                            else if (isAddingMinerals)
+                            {
+                                singlePlot.GetComponent<scr_Soil_Health>().IncreaseMinerals();
+                            }
+                            else if (isFertilizing)
+                            {
+                                singlePlot.GetComponent<scr_Soil_Health>().IncreaseFertilizer();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        //hits single dirt
+                        //depending on current action tested
+                        if (isWatering)
+                        {
+                            hit.collider.gameObject.transform.parent.GetComponent<scr_Soil_Health>().IncreaseWater();
+                        }
+                        else if (isAddingMinerals)
+                        {
+                            hit.collider.gameObject.transform.parent.GetComponent<scr_Soil_Health>().IncreaseMinerals();
+                        }
+                        else if (isFertilizing)
+                        {
+                            hit.collider.gameObject.transform.parent.GetComponent<scr_Soil_Health>().IncreaseFertilizer();
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
 
 }

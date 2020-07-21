@@ -62,6 +62,13 @@ public class scr_Crop_Controller : MonoBehaviour
             //will implement later
             CalculateQuality();
 
+            //TODO
+            //Get yield amount based on quiality
+
+            //TODO
+            //Decrement soil health as crop is harvested / used soil
+            //maybe on destroy??
+
             //ANIM TESTING
             GetComponentInParent<Animator>().Play("anim_Crop_Harvest");
             Destroy(this.gameObject, .3f);
@@ -100,7 +107,6 @@ public class scr_Crop_Controller : MonoBehaviour
             Debug.Log("(D) " + this.name + " Harvested.");
 
         }
-
     }
 
     //set crop variables based on scriptable object
@@ -125,7 +131,8 @@ public class scr_Crop_Controller : MonoBehaviour
 
     public void ChangeCropModel(int stage) {
         //set crop model
-        GameObject newCropModel = Instantiate(data.models[stage], transform.position, transform.rotation) as GameObject;
+        GameObject newCropModel = Instantiate(data.models[stage]) as GameObject;
+        newCropModel.transform.position = transform.position;
 
         //set as child of prefab
         newCropModel.transform.parent = transform;
@@ -136,6 +143,13 @@ public class scr_Crop_Controller : MonoBehaviour
         newCropModel.SetActive(true);
 
         cropModel = newCropModel;
+    }
 
+    //TODO
+    //Decrement soil health as crop is harvested / used soil
+    private void OnDestroy()
+    {
+        //decrease soil elements on harvest
+        sc_SoilHealth.DecreaseHealth();
     }
 }

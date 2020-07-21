@@ -21,8 +21,9 @@ public class scr_Soil_Health : MonoBehaviour
         InitializeStats();
     }
 
-    //decreases
+    //decreases 
     public void DecreaseHealth() {
+        //decreases all but rotation
         DecreaseWater();
         DecreaseMinerals();
         DecreaseFertilizer();
@@ -30,25 +31,30 @@ public class scr_Soil_Health : MonoBehaviour
 
 
     public void DecreaseWater() {
-        soilWater -= decrementValue;
+        if(ValueGreaterThanZero(soilWater))
+            soilWater -= decrementValue;
     }
 
     public void DecreaseFertilizer()
     {
-        soilFertilizer -= decrementValue;
+        if (ValueGreaterThanZero(soilFertilizer))
+            soilFertilizer -= decrementValue;
     }
 
     public void DecreaseMinerals() {
-        soilMinerals -= decrementValue;
+        if (ValueGreaterThanZero(soilMinerals))
+            soilMinerals -= decrementValue;
     }
 
     public void DecreaseRotation() {
-        soilRotation -= decrementValue;
+        if (ValueGreaterThanZero(soilRotation))
+            soilRotation -= decrementValue;
     }
 
     //increases
     public void IncreaseHealth()
     {
+        //increases all but rotation
         IncreaseWater();
         IncreaseFertilizer();
         IncreaseMinerals();
@@ -57,26 +63,27 @@ public class scr_Soil_Health : MonoBehaviour
 
     public void IncreaseWater()
     {
-        soilWater += incrementValue;
+        if (!ValueAtMax(soilWater))
+            soilWater += incrementValue;
     }
 
     public void IncreaseFertilizer()
     {
-        soilFertilizer += incrementValue;
+        if (!ValueAtMax(soilFertilizer))
+            soilFertilizer += incrementValue;
     }
 
     public void IncreaseMinerals()
     {
-        soilMinerals += incrementValue;
+        if (!ValueAtMax(soilMinerals))
+            soilMinerals += incrementValue;
     }
 
     public void IncreaseRotation()
     {
-        //if less than max value
-        if (soilRotation > maxValue)
-        {
+        //if not at max value
+        if(!ValueAtMax(soilRotation))
             soilRotation += incrementValue;
-        }
     }
 
 
@@ -109,11 +116,35 @@ public class scr_Soil_Health : MonoBehaviour
     //starting stats
     private void InitializeStats() {
 
-        soilFertilizer = 0;
-        soilWater = 0;
-        soilMinerals = 0;
+        soilFertilizer = 3;
+        soilWater = 3;
+        soilMinerals = 3;
         //rotation starts high, and decreases each wrong rotation
         soilRotation = maxValue;
+
+    }
+
+    private bool ValueGreaterThanZero(int value) {
+        if (value > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool ValueAtMax(int value)
+    {
+        if (value == maxValue)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 }

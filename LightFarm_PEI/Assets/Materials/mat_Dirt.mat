@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Test_LightWood
+  m_Name: mat_Dirt
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _SPECULARHIGHLIGHTS_OFF
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _SPECULARHIGHLIGHTS_OFF
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.8241302, b: 0.4009434, a: 1}
-    - _EmissionColor: {r: 0.09433961, g: 0.06411311, b: 0.030704873, a: 1}
+    - _Color: {r: 0.8584906, g: 0.39874563, b: 0.22272164, a: 1}
+    - _EmissionColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}

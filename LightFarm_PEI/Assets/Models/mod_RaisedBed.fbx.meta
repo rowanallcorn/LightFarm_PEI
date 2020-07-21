@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 0f7c27a3a88823a4a94daa03b900097a
+guid: d18e7426390d95143923a24318dc5a84
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RaisedBedInside
+    second: {fileID: 2100000, guid: b44768edff211ef4288306d8e10a7078, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RaisedBedWood
+    second: {fileID: 2100000, guid: 3ecf1760fc464c148a9aefc2e174a97c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +44,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.2
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.002
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

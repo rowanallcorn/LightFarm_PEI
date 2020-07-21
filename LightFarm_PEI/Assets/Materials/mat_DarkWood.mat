@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Test_Hedge
+  m_Name: mat_DarkWood
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: _EMISSION _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,9 +60,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlossMapScale: 0.6
-    - _Glossiness: 0.6
-    - _GlossyReflections: 0
+    - _GlossMapScale: 0.5
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.38060877, g: 0.6037736, b: 0.042719822, a: 1}
-    - _EmissionColor: {r: 0.022249905, g: 0.18867922, b: 0.05156632, a: 1}
+    - _Color: {r: 0.6037736, g: 0.44043306, b: 0.048415814, a: 1}
+    - _EmissionColor: {r: 0.09433961, g: 0.06411311, b: 0.030704873, a: 1}

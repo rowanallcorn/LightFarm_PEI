@@ -418,6 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16b72f2d7ea8f245974e9a0b94123c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seedState: 0
+  toolState: 0
   potatoSeeds: 10
   PotatoSeedsAmountText: {fileID: 5838162472726077029}
   peaSeeds: 0
@@ -428,11 +430,6 @@ MonoBehaviour:
   WinterWheatSeedsAmountText: {fileID: 2962666284494661777}
   blueBerryBushSeeds: 0
   BlueBerryBushSeedsAmountText: {fileID: 7219233028376743294}
-  Basket: 0
-  Hoe: 0
-  waterCan: 0
-  fertilizer: 0
-  minerals: 0
 --- !u!4 &122567917
 Transform:
   m_ObjectHideFlags: 0
@@ -695,6 +692,42 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 327431798}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &340288969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7738876755679236669, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7738876755010077776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &340288971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7738876755679236671, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7738876755010077776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340288969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &340288974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340288969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f1fdca47d94f241a6cad74b2f572fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 340288971}
+  myInventory: {fileID: 122567916}
+  seedState: 1
+  toolState: 0
+  SeedAmount: 0
+  IncrementDecermentAmount: -1
 --- !u!1001 &441282372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -789,7 +822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 475462855}
-  SeedAmount: 0
+  myInventory: {fileID: 122567916}
+  seedState: 0
+  toolState: 0
+  SeedAmount: 10
   IncrementDecermentAmount: 1
 --- !u!114 &475462855 stripped
 MonoBehaviour:
@@ -3727,6 +3763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7738876756499618709, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738876756499618709, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 122567916}
@@ -3734,6 +3775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7738876755679236671, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7738876755679236671, guid: 0924b2fc3e1445f44be1f8860e49fc1c,
         type: 3}

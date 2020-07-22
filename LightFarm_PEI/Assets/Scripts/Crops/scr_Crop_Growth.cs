@@ -50,14 +50,8 @@ public class scr_Crop_Growth : MonoBehaviour
     private void MidGrowth()
     {
         halfDoneGrowing = true;
-        //FOR TESTING
-        if (GetComponent<scr_Crop_Controller>().data.models[1] == null)
-        {
-            this.transform.localScale += new Vector3(.15f, .15f, .15f);
-        }
-        else {
-            GetComponent<scr_Crop_Controller>().ChangeCropModel(1);
-        }
+
+        GetComponent<scr_Crop_Controller>().ChangeCropModel(1);
     }
 
     //set plant as finished growing
@@ -67,15 +61,7 @@ public class scr_Crop_Growth : MonoBehaviour
         //set growth finished to true
         GetComponent<scr_Crop_Controller>().finishedGrowing = true;
 
-        //FOR TESTING
-        if (GetComponent<scr_Crop_Controller>().data.models[2] == null)
-        {
-            this.transform.localScale += new Vector3(.15f, .15f, .15f);
-        }
-        else {
-            GetComponent<scr_Crop_Controller>().ChangeCropModel(2);
-        }
-
+        GetComponent<scr_Crop_Controller>().ChangeCropModel(2);
     }
 
     //decrease growing timer by fast forward amount

@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: 2be9e0ca7ef532340a37fac27f735fb3, type: 3}
   - {fileID: -927199367670048503, guid: 14d0eb1cbdecb594c8f709491923f9ee, type: 3}
   plantRotationFamily: Brassicas
+  isFromSprout: 1

@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: a6b4bf0e07e27fd4394d0aa57d2c6451, type: 3}
   - {fileID: -927199367670048503, guid: a6b4bf0e07e27fd4394d0aa57d2c6451, type: 3}
   plantRotationFamily: Root
+  isFromSprout: 1

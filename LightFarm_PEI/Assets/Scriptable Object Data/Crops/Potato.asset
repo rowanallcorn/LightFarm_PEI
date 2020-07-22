@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: dd7076e778801eb418bb55bc6daff976, type: 3}
   - {fileID: -927199367670048503, guid: dd7076e778801eb418bb55bc6daff976, type: 3}
   plantRotationFamily: Potato
+  isFromSprout: 1

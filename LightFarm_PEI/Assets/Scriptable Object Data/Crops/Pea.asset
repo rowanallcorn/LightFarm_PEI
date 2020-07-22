@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: -927199367670048503, guid: 782d2baf921b5d347bf2b3b2cf101b75, type: 3}
   - {fileID: -927199367670048503, guid: 46835e22f3cf9e444aaa3043fdee8083, type: 3}
   plantRotationFamily: Legume
+  isFromSprout: 0

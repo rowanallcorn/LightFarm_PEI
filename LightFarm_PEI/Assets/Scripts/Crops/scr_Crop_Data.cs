@@ -15,4 +15,6 @@ public class scr_Crop_Data : ScriptableObject
     //plant family, for future rotation stuff
     public string plantRotationFamily;
 
+    //if the crop grows from a sprout (model will be smaller)
+    public bool isFromSprout;
 }

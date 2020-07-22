@@ -91,15 +91,17 @@ public class scr_Grid_Reference : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            //centre grid point
-            obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
-            if (sc_Grid.cellSize == 1)
-                obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
-
             //if player is placing an object, change the grid point
             if (isPlacingObject)
             {
                 if (biggerObject)
+                    obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
+            }
+            else
+            {
+                //centre grid point
+                obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
+                if (sc_Grid.cellSize == 1)
                     obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
             }
 
@@ -219,10 +221,11 @@ public class scr_Grid_Reference : MonoBehaviour
                     if (isHarvestingCrop)
                     {
                         //if crop is not part of raised bed, but single soil
-                        if (hit.collider.gameObject.transform.root.gameObject.name == obj_SoilHolder.name)
+                        if (hit.collider.gameObject.transform.parent.parent.gameObject.name == obj_SoilHolder.name)
                         {
                             hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
                         }
+                        /*
                         //if hitting crop in a raised bed
                         else if (hit.collider.gameObject.transform.root.gameObject.name == obj_FarmHolder.name)
                         {
@@ -235,7 +238,7 @@ public class scr_Grid_Reference : MonoBehaviour
                                     singlePlot.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
 

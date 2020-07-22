@@ -121,6 +121,7 @@ public class scr_Crop_Controller : MonoBehaviour
         //set crop model
         cropModel = Instantiate(data.models[0]) as GameObject;
         cropModel.transform.position = transform.position;
+        cropModel.transform.position += new Vector3(0f, .3f, 0f);
 
         //set as child of prefab
         cropModel.transform.parent = transform;
@@ -133,6 +134,14 @@ public class scr_Crop_Controller : MonoBehaviour
         //set crop model
         GameObject newCropModel = Instantiate(data.models[stage]) as GameObject;
         newCropModel.transform.position = transform.position;
+
+        //if mid stage, sprout crop
+        if(stage == 1 && data.isFromSprout)
+        {
+            //smaller size
+            newCropModel.transform.localScale -= new Vector3(50f, 50f, 50f);
+
+        }
 
         //set as child of prefab
         newCropModel.transform.parent = transform;

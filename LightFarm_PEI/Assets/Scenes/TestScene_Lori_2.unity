@@ -202,16 +202,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2 (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,6 +256,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
@@ -1180,11 +1180,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2 (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1239,6 +1234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
@@ -4054,11 +4054,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2 (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4113,6 +4108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
@@ -4717,10 +4717,10 @@ MonoBehaviour:
     type: 3}
   obj_TestObject: {fileID: 2866398238968815166, guid: dd150a61389e32c4292bab71726980bd,
     type: 3}
-  isPlacingObject: 0
-  isTillingSoil: 1
-  isPlantingSeed: 1
-  isHarvestingCrop: 1
+  isPlacingObject: 1
+  isTillingSoil: 0
+  isPlantingSeed: 0
+  isHarvestingCrop: 0
   obj_SoilHolder: {fileID: 1073091149}
   obj_FarmHolder: {fileID: 880872825}
   cropList:
@@ -4730,6 +4730,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91980d2bf4f76fc449c7055b88a5d9f3, type: 2}
   - {fileID: 11400000, guid: 67a23bf8dafeb264796d5424e30a7865, type: 2}
   currentlyPlanting: Potato
+  isWatering: 0
+  isFertilizing: 0
+  isAddingMinerals: 0
 --- !u!114 &1560670793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4744,7 +4747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridRows: 100
   gridColumns: 60
-  cellSize: 1
+  cellSize: 4
 --- !u!4 &1560670794
 Transform:
   m_ObjectHideFlags: 0
@@ -5200,11 +5203,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5259,6 +5257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
@@ -6597,11 +6600,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2 (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6656,6 +6654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}
@@ -7234,11 +7237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767946267}
     m_Modifications:
-    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Graybox_TilledSpot_2x2
-      objectReference: {fileID: 0}
     - target: {fileID: 2234155659508203183, guid: 332d66c670eadc04aa90423906f2b4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7293,6 +7291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125868288573022345, guid: 332d66c670eadc04aa90423906f2b4f1,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Graybox_TilledSpot_2x2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332d66c670eadc04aa90423906f2b4f1, type: 3}

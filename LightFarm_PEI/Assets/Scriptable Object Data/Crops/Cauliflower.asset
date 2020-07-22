@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99898d19454bb424baf2311d33572cc0, type: 3}
   m_Name: Cauliflower
   m_EditorClassIdentifier: 
-  totalTimeGrowthSeconds: 0
-  model: {fileID: 0}
+  totalTimeGrowthSeconds: 10
+  models:
+  - {fileID: -927199367670048503, guid: 0f7c27a3a88823a4a94daa03b900097a, type: 3}
+  - {fileID: -927199367670048503, guid: 2be9e0ca7ef532340a37fac27f735fb3, type: 3}
+  - {fileID: -927199367670048503, guid: 14d0eb1cbdecb594c8f709491923f9ee, type: 3}
   plantRotationFamily: Brassicas

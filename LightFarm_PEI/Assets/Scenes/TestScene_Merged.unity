@@ -558,7 +558,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: -100
-  far clip plane: 100
+  far clip plane: 150
   field of view: 60
   orthographic: 1
   orthographic size: 20
@@ -585,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574372647}
   m_LocalRotation: {x: 0.0990463, y: -0.8923983, z: 0.23911741, w: 0.3696458}
-  m_LocalPosition: {x: 64.32, y: 18.84, z: 41.799995}
+  m_LocalPosition: {x: 88.32, y: 38.43, z: 65.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}

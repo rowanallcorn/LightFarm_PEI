@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTimeGrowthSeconds: 5
   models:
+  - {fileID: -927199367670048503, guid: 0f7c27a3a88823a4a94daa03b900097a, type: 3}
   - {fileID: -927199367670048503, guid: dd7076e778801eb418bb55bc6daff976, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -927199367670048503, guid: dd7076e778801eb418bb55bc6daff976, type: 3}
   plantRotationFamily: Potato
+  isFromSprout: 1

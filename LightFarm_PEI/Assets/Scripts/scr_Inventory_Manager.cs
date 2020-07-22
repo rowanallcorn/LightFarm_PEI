@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class scr_Inventory_Manager : MonoBehaviour
 {
+    public enum SeedType {Potato, Pea, Cauliflower, Winterwheat, Blueberry };
+
+    public enum ToolType {Basket, Hoe, Wateringcan, Fertilizer, Minerals };
+
+    public SeedType seedState;
+    public ToolType toolState;
+
     [SerializeField]
     //growing plot seeds
     //Potato Family.
@@ -27,24 +34,6 @@ public class scr_Inventory_Manager : MonoBehaviour
     public int blueBerryBushSeeds = 0;
     public Text BlueBerryBushSeedsAmountText;
 
-    //Tools
-    //Harvests and sells fully grown crops.
-    public bool Basket = false;
-
-    // Tills soil in preparation for planting.
-    public bool Hoe = false;
-
-    //Waters crop.
-    public bool waterCan = false;
-
-    //possiblilty of multiple different types of fertilizers for later implemenetation.
-    public bool Fertilizer = false;
-
-    //Improves soil and crop quailty.
-    public bool Minerals = false;
-    
-    
-    
 
     // Start is called before the first frame update
     void Start()
@@ -60,79 +49,81 @@ public class scr_Inventory_Manager : MonoBehaviour
         CauliflowerSeedsAmountText.text = cauliflowerSeeds.ToString();
         WinterWheatSeedsAmountText.text = winterWheatSeeds.ToString();
         BlueBerryBushSeedsAmountText.text = blueBerryBushSeeds.ToString();
+ 
+
     }
 
-    //simple increase and decrease functions used for ui buttons
-    public void IncreasePotatoSeedCount()
-    {
-        potatoSeeds++;
-    }
-    public void DecreasePotatoSeedCount()
-    {
-        if(potatoSeeds > 0)
-        {
-            potatoSeeds--;
-        }
-        else { potatoSeeds = 0; }
+    ////simple increase and decrease functions used for ui buttons
+    //public void IncreasePotatoSeedCount()
+    //{
+    //    potatoSeeds++;
+    //}
+    //public void DecreasePotatoSeedCount()
+    //{
+    //    if(potatoSeeds > 0)
+    //    {
+    //        potatoSeeds--;
+    //    }
+    //    else { potatoSeeds = 0; }
         
-    }
+    //}
 
 
-    public void IncreasePeaSeedCount()
-    {
-        peaSeeds++;
-    }
-    public void DecreasePeaSeedCount()
-    {
-        if (peaSeeds > 0)
-        {
-            peaSeeds--;
-        }
-        else { peaSeeds = 0; }
+    //public void IncreasePeaSeedCount()
+    //{
+    //    peaSeeds++;
+    //}
+    //public void DecreasePeaSeedCount()
+    //{
+    //    if (peaSeeds > 0)
+    //    {
+    //        peaSeeds--;
+    //    }
+    //    else { peaSeeds = 0; }
 
-    }
-
-
-    public void IncreaseCauliflowerSeedCount()
-    {
-        cauliflowerSeeds++;
-    }
-    public void DecreaseCauliflowerSeedCount()
-    {
-        if (cauliflowerSeeds > 0)
-        {
-            cauliflowerSeeds--;
-        }
-        else { cauliflowerSeeds = 0; }
-
-    }
+    //}
 
 
-    public void IncreaseWinterWheatSeedCount()
-    {
-        winterWheatSeeds++;
-    }
-    public void DecreaseWinterWheatSeedCount()
-    {
-        if (winterWheatSeeds > 0)
-        {
-            winterWheatSeeds--;
-        }
-        else { winterWheatSeeds = 0; }
+    //public void IncreaseCauliflowerSeedCount()
+    //{
+    //    cauliflowerSeeds++;
+    //}
+    //public void DecreaseCauliflowerSeedCount()
+    //{
+    //    if (cauliflowerSeeds > 0)
+    //    {
+    //        cauliflowerSeeds--;
+    //    }
+    //    else { cauliflowerSeeds = 0; }
 
-    }
+    //}
 
 
-    public void IncreaseBlueBerrySeedCount()
-    {
-        blueBerryBushSeeds++;
-    }
-    public void DecreaseBlueBerrySeedCount()
-    {
-        if (blueBerryBushSeeds > 0)
-        {
-            blueBerryBushSeeds--;
-        }
-        else { blueBerryBushSeeds = 0; }
-    }
+    //public void IncreaseWinterWheatSeedCount()
+    //{
+    //    winterWheatSeeds++;
+    //}
+    //public void DecreaseWinterWheatSeedCount()
+    //{
+    //    if (winterWheatSeeds > 0)
+    //    {
+    //        winterWheatSeeds--;
+    //    }
+    //    else { winterWheatSeeds = 0; }
+
+    //}
+
+
+    //public void IncreaseBlueBerrySeedCount()
+    //{
+    //    blueBerryBushSeeds++;
+    //}
+    //public void DecreaseBlueBerrySeedCount()
+    //{
+    //    if (blueBerryBushSeeds > 0)
+    //    {
+    //        blueBerryBushSeeds--;
+    //    }
+    //    else { blueBerryBushSeeds = 0; }
+    //}
 }

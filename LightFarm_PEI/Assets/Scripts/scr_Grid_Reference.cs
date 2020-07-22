@@ -91,15 +91,17 @@ public class scr_Grid_Reference : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            //centre grid point
-            obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
-            if (sc_Grid.cellSize == 1)
-                obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
-
             //if player is placing an object, change the grid point
             if (isPlacingObject)
             {
                 if (biggerObject)
+                    obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
+            }
+            else
+            {
+                //centre grid point
+                obj_highlight.transform.position = sc_Grid.GetPointOnGridCentred(hit.point);
+                if (sc_Grid.cellSize == 1)
                     obj_highlight.transform.position = sc_Grid.GetPointOnGridCorner(hit.point);
             }
 
@@ -219,10 +221,11 @@ public class scr_Grid_Reference : MonoBehaviour
                     if (isHarvestingCrop)
                     {
                         //if crop is not part of raised bed, but single soil
-                        if (hit.collider.gameObject.transform.root.gameObject.name == obj_SoilHolder.name)
+                        if (hit.collider.gameObject.transform.parent.parent.gameObject.name == obj_SoilHolder.name)
                         {
                             hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
                         }
+                        /*
                         //if hitting crop in a raised bed
                         else if (hit.collider.gameObject.transform.root.gameObject.name == obj_FarmHolder.name)
                         {
@@ -235,7 +238,7 @@ public class scr_Grid_Reference : MonoBehaviour
                                     singlePlot.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
 
@@ -282,8 +285,8 @@ public class scr_Grid_Reference : MonoBehaviour
 
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
-        // Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
-        Vector3 halfCellSize = new Vector3(sc_Grid.cellSize, 1f, sc_Grid.cellSize);
+         Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
+        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize, 1f, sc_Grid.cellSize);
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -312,7 +315,7 @@ public class scr_Grid_Reference : MonoBehaviour
     //when placing an object
     void PlacingObject(GameObject objToPlace)
     {
-        
+        /*   
         //if the object is bigger than one cell
         if (objToPlace.transform.localScale.x > sc_Grid.cellSize || objToPlace.transform.localScale.z > sc_Grid.cellSize)
         {
@@ -333,9 +336,10 @@ public class scr_Grid_Reference : MonoBehaviour
         else
         {
             ResetHighlightSize();
-        }
+        }*/
 
-       // obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
+        biggerObject = true;
+        obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
 
     }
 
@@ -343,8 +347,10 @@ public class scr_Grid_Reference : MonoBehaviour
     {
         //TODO: get object size half
         //rework with assets
-        Vector3 halfObjectSize = objToPlace.transform.localScale * .5f;
-        halfObjectSize = new Vector3(halfObjectSize.x, halfObjectSize.y, halfObjectSize.z);
+        //Vector3 halfObjectSize = objToPlace.transform.localScale * .5f;
+         //halfObjectSize = new Vector3(halfObjectSize.x, halfObjectSize.y, halfObjectSize.z);
+        Vector3 halfObjectSize = new Vector3((objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize)/2+1, 1, (objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize)/2);
+
         // halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
 
 
@@ -353,7 +359,7 @@ public class scr_Grid_Reference : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             //things to avoid
-            if (colliders[i].tag == "Farm" || colliders[i].gameObject.layer == 9)
+            if (colliders[i].tag == "Farm" || colliders[i].tag == "RaisedBed" || colliders[i].gameObject.layer == 9)
             {
                 //won't instantiate later down
                 return;
@@ -364,7 +370,7 @@ public class scr_Grid_Reference : MonoBehaviour
         //intsantiate the object in the spot
         GameObject farmTestObj = Instantiate(objToPlace);
         farmTestObj.transform.position = spawnPoint;
-        farmTestObj.transform.position -= new Vector3(0f, .5f, 0f);
+        //farmTestObj.transform.position -= new Vector3(0f, 4.5f, 0f); //move down
         farmTestObj.transform.parent = obj_FarmHolder.transform;
 
         ResetHighlightSize();
@@ -374,7 +380,7 @@ public class scr_Grid_Reference : MonoBehaviour
     private void ResetHighlightSize()
     {
         //reset highlight size
-        obj_highlight.transform.localScale = new Vector3(2, 2, 1);
+        obj_highlight.transform.localScale = new Vector3(sc_Grid.cellSize, sc_Grid.cellSize, 1);
     }
 
 

@@ -15,6 +15,7 @@ public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
 
     public int SeedAmount = 0;
     public int IncrementDecermentAmount = 0;
+    public float seedCost = 0;
 
 
 
@@ -28,23 +29,24 @@ public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
         {
             case SeedType.Potato:
                 //do potatostuff here
-                myInventory.potatoSeeds = SeedAmount;
+                myInventory.potatoSeeds += IncrementDecermentAmount;
+               
                 break;
             case SeedType.Pea:
                 //do pea stuff here.
-                myInventory.peaSeeds = SeedAmount;
+                myInventory.peaSeeds += IncrementDecermentAmount;
                 break;
             case SeedType.Cauliflower:
                 //do califlower stuff here.
-                myInventory.cauliflowerSeeds = SeedAmount;
+                myInventory.cauliflowerSeeds += IncrementDecermentAmount;
                 break;
             case SeedType.Winterwheat:
                 //do winterwheat stuff here.
-                myInventory.winterWheatSeeds = SeedAmount;
+                myInventory.winterWheatSeeds += IncrementDecermentAmount;
                 break;
             case SeedType.Blueberry:
                 //do blueberry seed stuff here.
-                myInventory.blueBerryBushSeeds = SeedAmount;
+                myInventory.blueBerryBushSeeds += IncrementDecermentAmount;
                 break;
         }
 

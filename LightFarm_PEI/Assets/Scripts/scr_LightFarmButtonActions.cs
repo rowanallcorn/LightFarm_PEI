@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
 {
+
+    //public scr_Inventory_Manager myInventory;
+
     public int SeedAmount = 0;
     public int IncrementDecermentAmount = 0;
 
@@ -13,6 +16,8 @@ public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
     {
         // tells the button what to do when clicked.
         SeedAmount += IncrementDecermentAmount;
+        //myInventory.potatoSeeds = SeedAmount;
+        Debug.Log(SeedAmount);
 
     }
 

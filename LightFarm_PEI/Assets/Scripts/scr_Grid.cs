@@ -27,10 +27,10 @@ public class scr_Grid : MonoBehaviour
         {
             for (int z = 0; z < gridColumns; z += cellSize)
             {
-                gridCells[x, z] = new Vector3(x, gridY, z);
+                //gridCells[x, z] = new Vector3(x, gridY, z);
+                gridCells[x, z] = new Vector3(transform.root.position.x + x, gridY, transform.root.position.z + z);
             }
         }
-
     }
 
 
@@ -44,10 +44,10 @@ public class scr_Grid : MonoBehaviour
 
                 if (z != 0 && x != 0)
                 {
-                    if (hitPoint.z < z && hitPoint.z > z - cellSize)
+                    if (hitPoint.z < gridCells[x,z].z && hitPoint.z > gridCells[x, z].z - cellSize)
                     {
                         //if hit matches both row and col 
-                        if (hitPoint.x < x && hitPoint.x > x - cellSize)
+                        if (hitPoint.x < gridCells[x, z].x && hitPoint.x > gridCells[x, z].x - cellSize)
                         {
                             //return spot, but centred within grid cell
                              return GetCentreOfSpot(gridCells[x, z]);
@@ -56,10 +56,10 @@ public class scr_Grid : MonoBehaviour
                 }
                 else
                 {
-                    if (hitPoint.z < z && hitPoint.z > 0)
+                    if (hitPoint.z < gridCells[x, z].z && hitPoint.z > 0)
                     {
                         //if hit matches both row and col 
-                        if (hitPoint.x < x && hitPoint.x > 0)
+                        if (hitPoint.x < gridCells[x, z].x && hitPoint.x > 0)
                         {
                             //return spot, but centred within grid cell
                             return GetCentreOfSpot(gridCells[x, z]);
@@ -87,10 +87,10 @@ public class scr_Grid : MonoBehaviour
 
                 if (z != 0 && x != 0)
                 {
-                    if (hitPoint.z < z && hitPoint.z > z - cellSize)
+                    if (hitPoint.z < gridCells[x, z].z && hitPoint.z > gridCells[x, z].z - cellSize)
                     {
                         //if hit matches both row and col 
-                        if (hitPoint.x < x && hitPoint.x > x - cellSize)
+                        if (hitPoint.x < gridCells[x, z].x && hitPoint.x > gridCells[x, z].x - cellSize)
                         {
 
                             //return spot
@@ -100,10 +100,10 @@ public class scr_Grid : MonoBehaviour
                 }
                 else
                 {
-                    if (hitPoint.z < z && hitPoint.z > 0)
+                    if (hitPoint.z < gridCells[x, z].z && hitPoint.z > 0)
                     {
                         //if hit matches both row and col 
-                        if (hitPoint.x < x && hitPoint.x > 0)
+                        if (hitPoint.x < gridCells[x, z].x && hitPoint.x > 0)
                         {
 
                             //return spot
@@ -148,9 +148,11 @@ public class scr_Grid : MonoBehaviour
         {
             for (float z = 0; z < gridColumns; z += cellSize)
             {
-                Gizmos.DrawSphere(new Vector3(x, gridY, z), 0.1f);
+                // Gizmos.DrawSphere(new Vector3(x, gridY, z), 0.1f);
+                Gizmos.DrawSphere( new Vector3(transform.root.position.x + x, gridY, transform.root.position.z + z),.1f);
             }
 
         }
-    }*/
+    }
+    */
 }

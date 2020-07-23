@@ -1029,6 +1029,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pre_Graybox_MessageBoard_8x2
       objectReference: {fileID: 0}
+    - target: {fileID: 3975971922230722147, guid: 4264467b61047e048933873104f419da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4025359514106672470, guid: 4264467b61047e048933873104f419da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1251,11 +1256,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5494864605513376942, guid: e1af6e5b87bacb241a5d094c4f875f25,
+    - target: {fileID: 5494864605513376941, guid: e1af6e5b87bacb241a5d094c4f875f25,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7595cac1fd3f3c84683734909b36b159, type: 2}
+      propertyPath: m_Name
+      value: Plantable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494864604657865459, guid: e1af6e5b87bacb241a5d094c4f875f25,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494864604657865459, guid: e1af6e5b87bacb241a5d094c4f875f25,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9.371389
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1af6e5b87bacb241a5d094c4f875f25, type: 3}
 --- !u!1001 &7738876755010077776

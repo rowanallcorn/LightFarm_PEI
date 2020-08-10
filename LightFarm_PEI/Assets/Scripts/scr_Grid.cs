@@ -7,6 +7,8 @@ public class scr_Grid : MonoBehaviour
     public int gridRows, gridColumns;
     private float gridY = 0.5f;
 
+    //how big each cell is
+    //correlates to overlay as well
     public int cellSize;
 
     private Vector3[,] gridCells;
@@ -20,6 +22,8 @@ public class scr_Grid : MonoBehaviour
 
     }
 
+    //initial grid setup
+    //would need to be called again if grid is moved after setup? 
     private void SetupGrid()
     {
         //Loops create/store all the Vector points on the grid, according to size
@@ -27,13 +31,12 @@ public class scr_Grid : MonoBehaviour
         {
             for (int z = 0; z < gridColumns; z += cellSize)
             {
-                //gridCells[x, z] = new Vector3(x, gridY, z);
                 gridCells[x, z] = new Vector3(transform.root.position.x + x, gridY, transform.root.position.z + z);
             }
         }
     }
 
-
+    //get the centre of a cell on the grid
     public Vector3 GetPointOnGridCentred(Vector3 hitPoint)
     {
             //check for matching spot it array
@@ -77,6 +80,7 @@ public class scr_Grid : MonoBehaviour
 
     }
 
+    //get the grid point as a corner
     public Vector3 GetPointOnGridCorner(Vector3 hitPoint)
     {
         //check for matching spot it array
@@ -140,6 +144,7 @@ public class scr_Grid : MonoBehaviour
     }
 
     //Visual Editor Reference
+    //Enable to see how grid looks like in the scene
     /*
     private void OnDrawGizmos()
     {
@@ -148,7 +153,6 @@ public class scr_Grid : MonoBehaviour
         {
             for (float z = 0; z < gridColumns; z += cellSize)
             {
-                // Gizmos.DrawSphere(new Vector3(x, gridY, z), 0.1f);
                 Gizmos.DrawSphere( new Vector3(transform.root.position.x + x, gridY, transform.root.position.z + z),.1f);
             }
 

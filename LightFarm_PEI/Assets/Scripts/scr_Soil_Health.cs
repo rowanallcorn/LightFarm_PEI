@@ -124,6 +124,7 @@ public class scr_Soil_Health : MonoBehaviour
 
     }
 
+    //return true if the value checked is greater than 0
     private bool ValueGreaterThanZero(int value) {
         if (value > 0)
         {
@@ -135,6 +136,7 @@ public class scr_Soil_Health : MonoBehaviour
         }
     }
 
+    //return true if the value is at max
     private bool ValueAtMax(int value)
     {
         if (value == maxValue)

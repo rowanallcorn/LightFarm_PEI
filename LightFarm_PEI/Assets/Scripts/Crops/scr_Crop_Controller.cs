@@ -57,7 +57,6 @@ public class scr_Crop_Controller : MonoBehaviour
             sc_SoilHealth.lastCropFamily = cropFamily;
 
             //TODO Text later
-           // Debug.Log(this.name + " Harvested.");
 
             //will implement later
             CalculateQuality();
@@ -67,7 +66,6 @@ public class scr_Crop_Controller : MonoBehaviour
 
             //TODO
             //Decrement soil health as crop is harvested / used soil
-            //maybe on destroy??
 
             //ANIM TESTING
             GetComponentInParent<Animator>().Play("anim_Crop_Harvest");
@@ -75,7 +73,7 @@ public class scr_Crop_Controller : MonoBehaviour
         }
         else
         {
-            //TODO text later
+            //TODO UI text later
             //time left to grow
             Debug.Log("Wait " + GetComponent<scr_Crop_Growth>().timeToGrow.ToString("0") + "s.");
         }

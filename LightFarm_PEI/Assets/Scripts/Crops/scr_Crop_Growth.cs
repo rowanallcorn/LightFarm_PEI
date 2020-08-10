@@ -7,14 +7,13 @@ public class scr_Crop_Growth : MonoBehaviour
     //total time it takes to grow, will deplete as it grows
     public float timeToGrow;
 
-    //FOR TESTING, mock stages of growth
     //when crop is halfway through growth
+    //for testing with 3 stage crops (initial, mid, final)
     private float halfTimeToGrow;
     private bool halfDoneGrowing;
 
     public void Growing()
     {
-
         //if crop has not finished growing
         if (!GetComponent<scr_Crop_Controller>().finishedGrowing)
         {
@@ -30,7 +29,6 @@ public class scr_Crop_Growth : MonoBehaviour
                 FinishedGrowing();
             }
 
-            //FOR TESTING
             //if plant is half finished growing
             if (timeToGrow < halfTimeToGrow && !halfDoneGrowing)
             {

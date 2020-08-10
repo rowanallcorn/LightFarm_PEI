@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class scr_Crop_Data : ScriptableObject
 {
-
     //total time to grow
     public float totalTimeGrowthSeconds;
 

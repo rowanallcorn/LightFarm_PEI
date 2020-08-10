@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scr_Grid_Reference : MonoBehaviour
 {
-
+    //reference to the grid
     private scr_Grid sc_Grid;
 
     public GameObject obj_highlight;
@@ -26,12 +26,9 @@ public class scr_Grid_Reference : MonoBehaviour
     public GameObject obj_SoilHolder;
     public GameObject obj_FarmHolder;
 
-
     //For planting specific crops
     public scr_Crop_Data[] cropList;
     public string currentlyPlanting;
-    // public bool isPlantingPea, isPlantingPotato;
-
 
     //for soil health options
     public bool isWatering, isFertilizing, isAddingMinerals;
@@ -213,7 +210,6 @@ public class scr_Grid_Reference : MonoBehaviour
                         }
                     }
 
-
                 }
                 //if hitting crop directly
                 else if (hit.collider.tag == "Crop")
@@ -225,20 +221,7 @@ public class scr_Grid_Reference : MonoBehaviour
                         {
                             hit.collider.gameObject.GetComponent<scr_Crop_Controller>().HarvestCrop();
                         }
-                        /*
-                        //if hitting crop in a raised bed
-                        else if (hit.collider.gameObject.transform.root.gameObject.name == obj_FarmHolder.name)
-                        {
-                            if (hit.collider.gameObject.transform.parent.parent.GetComponent<scr_Raised_Bed>().soilPlots[0].transform.childCount > 1)
-                            {
-                                //for each plot
-                                foreach (var singlePlot in hit.collider.gameObject.transform.parent.parent.GetComponent<scr_Raised_Bed>().soilPlots)
-                                {
-                                    //harvest the crop
-                                    singlePlot.GetComponentInChildren<scr_Crop_Controller>().HarvestCrop();
-                                }
-                            }
-                        }*/
+
                     }
                 }
 
@@ -250,7 +233,6 @@ public class scr_Grid_Reference : MonoBehaviour
     //FOR TESTING
     void TillSoil(Vector3 spawnPoint)
     {
-
         Vector3 halfCellSize;
 
         //for collision checking
@@ -272,7 +254,6 @@ public class scr_Grid_Reference : MonoBehaviour
 
         }
 
-
         //tilled spot
         GameObject tilTestObj = Instantiate(pre_TilledSpot);
         tilTestObj.transform.position = spawnPoint;
@@ -286,7 +267,6 @@ public class scr_Grid_Reference : MonoBehaviour
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
          Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
-        //Vector3 halfCellSize = new Vector3(sc_Grid.cellSize, 1f, sc_Grid.cellSize);
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfCellSize);
@@ -301,8 +281,7 @@ public class scr_Grid_Reference : MonoBehaviour
 
         }
 
-        //TODO, change for specific crops clicked
-        //crop
+        //instantiate the crop
         GameObject cropObj = Instantiate(pre_Crop);
         cropObj.transform.position = spawnPoint + Vector3.up;
         cropObj.transform.parent = soilPlot.transform.parent;
@@ -315,28 +294,6 @@ public class scr_Grid_Reference : MonoBehaviour
     //when placing an object
     void PlacingObject(GameObject objToPlace)
     {
-        /*   
-        //if the object is bigger than one cell
-        if (objToPlace.transform.localScale.x > sc_Grid.cellSize || objToPlace.transform.localScale.z > sc_Grid.cellSize)
-        {
-            biggerObject = true;
-        }
-        else
-        {
-            biggerObject = false;
-        }
-
-        //if the object is bigger, change the highlight to match the size
-        if (biggerObject)
-        {
-            //set to size
-             obj_highlight.transform.localScale = new Vector3(objToPlace.transform.localScale.x, objToPlace.transform.localScale.z, 1);
-            //obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent < scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
-        }
-        else
-        {
-            ResetHighlightSize();
-        }*/
 
         biggerObject = true;
         obj_highlight.transform.localScale = new Vector3(objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize, objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize, 1);
@@ -347,12 +304,7 @@ public class scr_Grid_Reference : MonoBehaviour
     {
         //TODO: get object size half
         //rework with assets
-        //Vector3 halfObjectSize = objToPlace.transform.localScale * .5f;
-         //halfObjectSize = new Vector3(halfObjectSize.x, halfObjectSize.y, halfObjectSize.z);
         Vector3 halfObjectSize = new Vector3((objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize)/2+1, 1, (objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize)/2);
-
-        // halfObjectSize = new Vector3(halfObjectSize.x - 1, halfObjectSize.y, halfObjectSize.z - 1);
-
 
         //check if collision????
         Collider[] colliders = Physics.OverlapBox(spawnPoint, halfObjectSize);
@@ -370,7 +322,6 @@ public class scr_Grid_Reference : MonoBehaviour
         //intsantiate the object in the spot
         GameObject farmTestObj = Instantiate(objToPlace);
         farmTestObj.transform.position = spawnPoint;
-        //farmTestObj.transform.position -= new Vector3(0f, 4.5f, 0f); //move down
         farmTestObj.transform.parent = obj_FarmHolder.transform;
 
         ResetHighlightSize();
@@ -425,22 +376,6 @@ public class scr_Grid_Reference : MonoBehaviour
         //otherwise 0
         return 0;
     }
-
-    /* for bools
-    public void PlantSpecificCrop( GameObject cropObj)
-    {
-
-        if (isPlantingPea)
-        {
-            cropObj.GetComponent<scr_Crop_Controller>().data = cropList[2];
-        }
-        else if (isPlantingPotato)
-        {
-            cropObj.GetComponent<scr_Crop_Controller>().data = cropList[3];
-        }
-
-    }*/
-
 
     //dealing with soil health values
     void CheckingSoil()

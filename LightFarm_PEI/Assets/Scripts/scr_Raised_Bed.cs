@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class scr_Raised_Bed : MonoBehaviour
 {
+
+    //holds each soil plot attached to a raised bed
     public List<GameObject> soilPlots;
 
     // Start is called before the first frame update

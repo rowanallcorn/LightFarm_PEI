@@ -7,20 +7,23 @@ public class scr_Grid_Reference : MonoBehaviour
     //reference to the grid
     private scr_Grid sc_Grid;
 
+    //the yellow highlight on the grid
     public GameObject obj_highlight;
     private bool mouseHeld = false;
 
-    //FOR TESTING
+    //Assets to spawn
     public GameObject pre_TilledSpot;
     public GameObject pre_Crop;
-
-    public GameObject obj_TestObject;
-    public bool isPlacingObject = false;
+    public GameObject pre_RaisedBed;
     private bool biggerObject = false;
 
+    //For activating player actions
+    public bool isPlacingObject = false; 
     public bool isTillingSoil = false;
     public bool isPlantingSeed = false;
     public bool isHarvestingCrop = false;
+    //For soil health actions
+    public bool isWatering, isFertilizing, isAddingMinerals;
 
     //For Holding Insantiated Objects in Scenes, cleaner
     public GameObject obj_SoilHolder;
@@ -30,8 +33,7 @@ public class scr_Grid_Reference : MonoBehaviour
     public scr_Crop_Data[] cropList;
     public string currentlyPlanting;
 
-    //for soil health options
-    public bool isWatering, isFertilizing, isAddingMinerals;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +74,7 @@ public class scr_Grid_Reference : MonoBehaviour
 
             //if the player is trying to place an object
             if (isPlacingObject)
-                PlacingObject(obj_TestObject);
+                PlacingObject(pre_RaisedBed);
         }
 
     }
@@ -109,6 +111,7 @@ public class scr_Grid_Reference : MonoBehaviour
         }
     }
 
+    //Check where the player clicked, and perform appropriate action
     void CheckPosition()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -123,7 +126,6 @@ public class scr_Grid_Reference : MonoBehaviour
             if (hit.collider != null)
             {
 
-
                 //only if hitting ground layer
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
@@ -134,11 +136,11 @@ public class scr_Grid_Reference : MonoBehaviour
                         //if it's bigger, the gridpoint is counted by the corner, otherwise centred
                         if (biggerObject)
                         {
-                            PlaceObject(sc_Grid.GetPointOnGridCorner(hit.point), obj_TestObject);
+                            PlaceObject(sc_Grid.GetPointOnGridCorner(hit.point), pre_RaisedBed);
                         }
                         else
                         {
-                            PlaceObject(sc_Grid.GetPointOnGridCentred(hit.point), obj_TestObject);
+                            PlaceObject(sc_Grid.GetPointOnGridCentred(hit.point), pre_RaisedBed);
 
                         }
                     }
@@ -230,7 +232,7 @@ public class scr_Grid_Reference : MonoBehaviour
     }
 
 
-    //FOR TESTING
+    //Creating a tilled spot
     void TillSoil(Vector3 spawnPoint)
     {
         Vector3 halfCellSize;
@@ -263,7 +265,7 @@ public class scr_Grid_Reference : MonoBehaviour
         ResetHighlightSize();
     }
 
-
+    //Planting a crop on tilled spot, or within raised bed 
     void PlantCrop(Vector3 spawnPoint, GameObject soilPlot)
     {
          Vector3 halfCellSize = new Vector3(sc_Grid.cellSize / 2, 1f, sc_Grid.cellSize / 2);
@@ -300,10 +302,10 @@ public class scr_Grid_Reference : MonoBehaviour
 
     }
 
+    //Placing a raised bed (can be edited to work with any object, for ex. future coops)
     void PlaceObject(Vector3 spawnPoint, GameObject objToPlace)
     {
-        //TODO: get object size half
-        //rework with assets
+        //get size for checks
         Vector3 halfObjectSize = new Vector3((objToPlace.GetComponent<scr_Grid_Object_Size>().tileX * sc_Grid.cellSize)/2+1, 1, (objToPlace.GetComponent<scr_Grid_Object_Size>().tileZ * sc_Grid.cellSize)/2);
 
         //check if collision????
@@ -334,10 +336,9 @@ public class scr_Grid_Reference : MonoBehaviour
         obj_highlight.transform.localScale = new Vector3(sc_Grid.cellSize, sc_Grid.cellSize, 1);
     }
 
-
+    //based on the list in inspector
     public void PlantSpecificCrop(GameObject cropObj)
     {
-
         //based on "currentlyPlanting" string, set the right data for the plant object
         switch (currentlyPlanting)
         {
@@ -362,7 +363,6 @@ public class scr_Grid_Reference : MonoBehaviour
     //find a crop based on it's name and return it's index in the list
     private int GetCropIndexInList(string cropName)
     {
-
         //look for crop with matching name
         for (int i = 0; i < cropList.Length; i++)
         {

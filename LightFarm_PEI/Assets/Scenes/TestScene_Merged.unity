@@ -380,6 +380,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 675086571301721481, guid: c7cfe7693194c0b42aa54acc31754bd1,
+        type: 3}
+      propertyPath: pre_RaisedBed
+      value: 
+      objectReference: {fileID: 2866398238968815166, guid: dd150a61389e32c4292bab71726980bd,
+        type: 3}
+    - target: {fileID: 675086571301721481, guid: c7cfe7693194c0b42aa54acc31754bd1,
+        type: 3}
+      propertyPath: isPlantingSeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675086571301721481, guid: c7cfe7693194c0b42aa54acc31754bd1,
+        type: 3}
+      propertyPath: isTillingSoil
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7cfe7693194c0b42aa54acc31754bd1, type: 3}
 --- !u!1 &655663429 stripped
@@ -461,16 +477,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2098816917705066388, guid: ddedf020c8239664eb9dd2dca78666b6,
-        type: 3}
-      propertyPath: m_Name
-      value: pre_Grid
-      objectReference: {fileID: 0}
-    - target: {fileID: 2098816917705066388, guid: ddedf020c8239664eb9dd2dca78666b6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2098816917705066389, guid: ddedf020c8239664eb9dd2dca78666b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -524,6 +530,16 @@ PrefabInstance:
     - target: {fileID: 2098816917705066389, guid: ddedf020c8239664eb9dd2dca78666b6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098816917705066388, guid: ddedf020c8239664eb9dd2dca78666b6,
+        type: 3}
+      propertyPath: m_Name
+      value: pre_Grid
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098816917705066388, guid: ddedf020c8239664eb9dd2dca78666b6,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2098816916295657743, guid: ddedf020c8239664eb9dd2dca78666b6,

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
 {
-
+    //Using myInventory to grab the seed information and then apply it.
     public Inventory myInventory;
+
+    //Enums as a way to tell the button which seed or tool to effect when pressed.
     public enum SeedType { Potato, Pea, Cauliflower, Winterwheat, Blueberry };
 
     public enum ToolType { Basket, Hoe, Wateringcan, Fertilizer, Minerals };
@@ -13,59 +15,47 @@ public class scr_LightFarmButtonActions : scr_abs_LightFarmButton
     public SeedType seedState;
     public ToolType toolState;
 
-    
+    //The amount the button should Increment or decrement the seed by.
     public int IncrementDecermentAmount = 0;
+    //Each seed will have a cost eventually but this feature was not finished and needs to be continued.
     public float seedCost = 0;
 
 
 
     protected override void OnClick()
     {
-        // tells the button what to do when clicked.
-       
+        //This increments of decrements the seed depending which numbers are applied to the variables in the inspector.
 
 
         switch (seedState)
         {
             case SeedType.Potato:
-                //do potatostuff here
+               
                 myInventory.potatoSeeds += IncrementDecermentAmount;
                
                 break;
 
             case SeedType.Pea:
-                //do pea stuff here.
+               
                 myInventory.peaSeeds += IncrementDecermentAmount;
                 break;
 
             case SeedType.Cauliflower:
-                //do califlower stuff here.
+              
                 myInventory.cauliflowerSeeds += IncrementDecermentAmount;
                 break;
 
             case SeedType.Winterwheat:
-                //do winterwheat stuff here.
+            
                 myInventory.winterWheatSeeds += IncrementDecermentAmount;
                 break;
 
             case SeedType.Blueberry:
-                //do blueberry seed stuff here.
+                
                 myInventory.blueBerryBushSeeds += IncrementDecermentAmount;
                 break;
         }
 
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

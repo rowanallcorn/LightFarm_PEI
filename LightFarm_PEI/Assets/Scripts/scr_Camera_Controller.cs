@@ -21,7 +21,7 @@ public class scr_Camera_Controller : MonoBehaviour
             dragOrigin = Camera.main.ScreenToWorldPoint(dragOrigin);
          }
 
-        // this if statement is used entirely for pinch to zooming on mobile.
+        // this if statement is used entirely for pinch to zooming on mobile. Takes 2 points first and 2nd touch and measures the distance between fingers, if the distance gets bigger than it zooms in if it gets smaller then it zooms out.
         if (Input.touchCount == 2)
         {
             Touch touchZero = Input.GetTouch(0);
